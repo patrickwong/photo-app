@@ -405,6 +405,7 @@
 				70A6DA471A9ED88C0091946B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70A6DA481A9ED88C0091946B /* Build configuration list for PBXNativeTarget "Photo AppTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +414,7 @@
 				70A6DA4A1A9ED88C0091946B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
