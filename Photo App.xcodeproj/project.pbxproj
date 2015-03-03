@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		70A6DA2C1A9ED88C0091946B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6DA2B1A9ED88C0091946B /* AppDelegate.swift */; };
-		70A6DA2E1A9ED88C0091946B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6DA2D1A9ED88C0091946B /* ViewController.swift */; };
 		70A6DA311A9ED88C0091946B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A6DA2F1A9ED88C0091946B /* Main.storyboard */; };
 		70A6DA331A9ED88C0091946B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A6DA321A9ED88C0091946B /* Images.xcassets */; };
 		70A6DA361A9ED88C0091946B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A6DA341A9ED88C0091946B /* LaunchScreen.xib */; };
 		70A6DA421A9ED88C0091946B /* Photo_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6DA411A9ED88C0091946B /* Photo_AppTests.swift */; };
+		70EBEE3F1AA548FD00E5ACF4 /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +29,13 @@
 		70A6DA261A9ED88C0091946B /* Photo App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A6DA2A1A9ED88C0091946B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A6DA2B1A9ED88C0091946B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		70A6DA2D1A9ED88C0091946B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		70A6DA301A9ED88C0091946B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		70A6DA321A9ED88C0091946B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		70A6DA351A9ED88C0091946B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		70A6DA3B1A9ED88C0091946B /* Photo AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Photo AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A6DA401A9ED88C0091946B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A6DA411A9ED88C0091946B /* Photo_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_AppTests.swift; sourceTree = "<group>"; };
+		70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				70A6DA2B1A9ED88C0091946B /* AppDelegate.swift */,
-				70A6DA2D1A9ED88C0091946B /* ViewController.swift */,
 				70A6DA2F1A9ED88C0091946B /* Main.storyboard */,
+				70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */,
 				70A6DA321A9ED88C0091946B /* Images.xcassets */,
 				70A6DA341A9ED88C0091946B /* LaunchScreen.xib */,
 				70A6DA291A9ED88C0091946B /* Supporting Files */,
@@ -212,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70A6DA2E1A9ED88C0091946B /* ViewController.swift in Sources */,
+				70EBEE3F1AA548FD00E5ACF4 /* CameraRollViewController.swift in Sources */,
 				70A6DA2C1A9ED88C0091946B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
