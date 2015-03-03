@@ -10,7 +10,9 @@ import UIKit
 
 class CameraRollViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var photoImageView = UIImageView(frame: CGRectMake(40, 120, 200, 200)) // size and place of selected image
+//    var photoImageView = UIImageView(frame: CGRectMake(40, 120, 200, 200)) // size and place of selected image
+
+    @IBOutlet weak var photoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
