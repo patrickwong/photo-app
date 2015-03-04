@@ -1,4 +1,4 @@
-# Photo App
+# Project Circle (Photo App)
 
 ### Goals
 #### Filters
