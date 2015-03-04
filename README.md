@@ -5,8 +5,8 @@
 * brightness
 * saturation
 * contrast
-* cropping 
-* rotation (straightening)
+* cropping and rotation (straightening)
+* temperature
 
 ### Notes
 Project [kickoff meeting](https://github.com/patrickwong/photo-app/wiki/Kickoff-Meeting) and preliminary [to-do list](https://github.com/patrickwong/photo-app/wiki/To-Do)
