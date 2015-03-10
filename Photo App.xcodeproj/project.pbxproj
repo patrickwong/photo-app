@@ -13,6 +13,8 @@
 		70A6DA361A9ED88C0091946B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A6DA341A9ED88C0091946B /* LaunchScreen.xib */; };
 		70A6DA421A9ED88C0091946B /* Photo_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6DA411A9ED88C0091946B /* Photo_AppTests.swift */; };
 		70EBEE3F1AA548FD00E5ACF4 /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */; };
+		D4CC5D0C1AAE7FEF004BEF37 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC5D0B1AAE7FEF004BEF37 /* PhotoCollectionViewController.swift */; };
+		D4CC5D0E1AAE8002004BEF37 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC5D0D1AAE8002004BEF37 /* PhotoDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		70A6DA401A9ED88C0091946B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A6DA411A9ED88C0091946B /* Photo_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_AppTests.swift; sourceTree = "<group>"; };
 		70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRollViewController.swift; sourceTree = "<group>"; };
+		D4CC5D0B1AAE7FEF004BEF37 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		D4CC5D0D1AAE8002004BEF37 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			children = (
 				70A6DA2B1A9ED88C0091946B /* AppDelegate.swift */,
 				70A6DA2F1A9ED88C0091946B /* Main.storyboard */,
+				D4CC5D0B1AAE7FEF004BEF37 /* PhotoCollectionViewController.swift */,
+				D4CC5D0D1AAE8002004BEF37 /* PhotoDetailViewController.swift */,
 				70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */,
 				70A6DA321A9ED88C0091946B /* Images.xcassets */,
 				70A6DA341A9ED88C0091946B /* LaunchScreen.xib */,
@@ -213,6 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				70EBEE3F1AA548FD00E5ACF4 /* CameraRollViewController.swift in Sources */,
+				D4CC5D0C1AAE7FEF004BEF37 /* PhotoCollectionViewController.swift in Sources */,
+				D4CC5D0E1AAE8002004BEF37 /* PhotoDetailViewController.swift in Sources */,
 				70A6DA2C1A9ED88C0091946B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
