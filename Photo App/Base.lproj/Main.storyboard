@@ -56,7 +56,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Gyg-uy-nOT">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Gyg-uy-nOT" customClass="PhotoCell" customModule="Photo_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -72,7 +72,8 @@
                                         </view>
                                         <size key="customSize" width="105" height="105"/>
                                         <connections>
-                                            <segue destination="aZI-N2-rPx" kind="modal" id="dj2-Nz-gfi"/>
+                                            <outlet property="imageThumbnail" destination="qK9-6F-EAJ" id="j5m-ho-p5X"/>
+                                            <segue destination="aZI-N2-rPx" kind="modal" identifier="photoDetailSegue" id="dj2-Nz-gfi"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -86,7 +87,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="x5M-il-FCf"/>
                     <connections>
-                        <outlet property="collectionView" destination="cRE-U8-Phs" id="YkN-tH-lYT"/>
+                        <outlet property="collectionView" destination="cRE-U8-Phs" id="0wU-Q0-But"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oGL-H8-v61" userLabel="First Responder" sceneMemberID="firstResponder"/>
