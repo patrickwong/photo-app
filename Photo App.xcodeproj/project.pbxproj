@@ -10,7 +10,6 @@
 		70A6DA2C1A9ED88C0091946B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6DA2B1A9ED88C0091946B /* AppDelegate.swift */; };
 		70A6DA311A9ED88C0091946B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A6DA2F1A9ED88C0091946B /* Main.storyboard */; };
 		70A6DA331A9ED88C0091946B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A6DA321A9ED88C0091946B /* Images.xcassets */; };
-		70A6DA361A9ED88C0091946B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70A6DA341A9ED88C0091946B /* LaunchScreen.xib */; };
 		70A6DA421A9ED88C0091946B /* Photo_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A6DA411A9ED88C0091946B /* Photo_AppTests.swift */; };
 		70EBEE3F1AA548FD00E5ACF4 /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */; };
 		D40037E71AAF8207006901D7 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40037E61AAF8207006901D7 /* Photos.framework */; };
@@ -35,7 +34,6 @@
 		70A6DA2B1A9ED88C0091946B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70A6DA301A9ED88C0091946B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		70A6DA321A9ED88C0091946B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		70A6DA351A9ED88C0091946B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		70A6DA3B1A9ED88C0091946B /* Photo AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Photo AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A6DA401A9ED88C0091946B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70A6DA411A9ED88C0091946B /* Photo_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo_AppTests.swift; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				D4CC5D0D1AAE8002004BEF37 /* PhotoDetailViewController.swift */,
 				70EBEE3E1AA548FD00E5ACF4 /* CameraRollViewController.swift */,
 				70A6DA321A9ED88C0091946B /* Images.xcassets */,
-				70A6DA341A9ED88C0091946B /* LaunchScreen.xib */,
 				70A6DA291A9ED88C0091946B /* Supporting Files */,
 			);
 			path = "Photo App";
@@ -206,7 +203,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				70A6DA311A9ED88C0091946B /* Main.storyboard in Resources */,
-				70A6DA361A9ED88C0091946B /* LaunchScreen.xib in Resources */,
 				70A6DA331A9ED88C0091946B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,14 +254,6 @@
 				70A6DA301A9ED88C0091946B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		70A6DA341A9ED88C0091946B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70A6DA351A9ED88C0091946B /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -352,9 +340,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Photo App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Photo App";
 			};
 			name = Debug;
 		};
@@ -362,9 +351,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Photo App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Photo App";
 			};
 			name = Release;
 		};
@@ -382,7 +372,7 @@
 				);
 				INFOPLIST_FILE = "Photo AppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Photo AppTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photo App.app/Photo App";
 			};
 			name = Debug;
@@ -397,7 +387,7 @@
 				);
 				INFOPLIST_FILE = "Photo AppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Photo AppTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Photo App.app/Photo App";
 			};
 			name = Release;

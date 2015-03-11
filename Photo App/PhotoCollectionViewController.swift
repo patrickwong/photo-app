@@ -16,7 +16,7 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     @IBOutlet weak var collectionView: UICollectionView!
 
     let reuseIdentifier = "photoCell"
-    let albumName = "Photo App" // displayed app album name
+    let albumName = "Prime Images" // displayed app album name
     
     var albumFound :  Bool = false
     var assetCollection : PHAssetCollection! // specific folder for our app
@@ -40,37 +40,31 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
         // Do any additional setup after loading the view.
         
         // Check if an album for the app exists, if not, create it
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title = %@", albumName)
-        
-        
-        let collection = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any , options: fetchOptions)
-        if (collection.firstObject != nil ){
-            // found the album
-            self.albumFound = true
-            self.assetCollection = collection.firstObject as PHAssetCollection
-        } else {
-            // create the folder
-            NSLog("\nfolder \"%@\" does not exist\nCreating now...", albumName)
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-                let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
-                }, completionHandler: { (success:Bool, error:NSError!) -> Void in
-                    NSLog("Creation of folder -> %@", (success ? "Success":"Error!"))
-                    self.albumFound = (success ? true:false)
-            })
-        }
+//        let fetchOptions = PHFetchOptions()
+//        fetchOptions.predicate = NSPredicate(format: "title = %@", albumName)
+//        let collection = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any , options: fetchOptions)
+//        if (collection.firstObject != nil ){
+//            // found the album
+//            self.albumFound = true
+//            self.assetCollection = collection.firstObject as PHAssetCollection
+//        } else {
+//            // create the folder
+//            NSLog("\nfolder \"%@\" does not exist\nCreating now...", albumName)
+//            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+//                let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
+//                }, completionHandler: { (success:Bool, error:NSError!) -> Void in
+//                    NSLog("Creation of folder -> %@", (success ? "Success":"Error!"))
+//                    self.albumFound = (success ? true:false)
+//            })
+//        }
     }
     
     override func viewDidAppear(animated: Bool) {
-
-        
         // fetch photos from the collection
         // self.photosAsset = PHAsset.fetchAssetsInAssetCollection(self.assetCollection, options: nil)
-
-        
         // handle no photos in the asset collection
         // ...have a label that says "No Photos", thoughts guys? -b
-        
+
         self.collectionView.reloadData()
         
     }
