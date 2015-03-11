@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Photos
 
 class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var imageThumbnail: UIImageView!
     
+
     func setThumbnailImage(thumbnailImage: UIImage){
         self.imageThumbnail.image = thumbnailImage
     }

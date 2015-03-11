@@ -9,7 +9,9 @@
 import UIKit
 import Photos
 
-class PhotoCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
+let reuseIdentifier = "Cell"
+
+class PhotoCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PHPhotoLibraryChangeObserver  {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -18,19 +20,29 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     var albumFound :  Bool = false
     var assetCollection : PHAssetCollection! // specific folder for our app
-    var photosAsset : PHFetchResult! // array of photos in asset collection
+    var photosAsset : PHFetchResult! = nil // array of photos in asset collection
+    let imageManager  = PHCachingImageManager.defaultManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        let result = PHAssetCollection.fetchMomentsWithOptions(nil)
+        let rec = result.firstObject as PHAssetCollection!
+        if rec == nil {
+            return
+        }
+        self.photosAsset = PHAsset.fetchAssetsInAssetCollection(rec, options: nil)
+        PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self)
 
         // Do any additional setup after loading the view.
         
         // Check if an album for the app exists, if not, create it
         let fetchOptions = PHFetchOptions()
         fetchOptions.predicate = NSPredicate(format: "title = %@", albumName)
+        
         
         let collection = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any , options: fetchOptions)
         if (collection.firstObject != nil ){
@@ -50,8 +62,11 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     }
     
     override func viewDidAppear(animated: Bool) {
+
+        
         // fetch photos from the collection
-        self.photosAsset = PHAsset.fetchAssetsInAssetCollection(self.assetCollection, options: nil)
+        // self.photosAsset = PHAsset.fetchAssetsInAssetCollection(self.assetCollection, options: nil)
+
         
         // handle no photos in the asset collection
         // ...have a label that says "No Photos", thoughts guys? -b
@@ -72,6 +87,7 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        photosAsset = nil
         // Dispose of any resources that can be recreated.
     }
     
@@ -87,11 +103,10 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        // gets cell and creates it, displaying it on the view controller
-        let cell: PhotoCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCell
+        let cell: PhotoCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCell // gets cell and creates it, displaying it on the view controller
         
-        // modify the cell
-        // cell.backgroundColor = UIColor.redColor()
+        //configure cell
+    
         let asset: PHAsset = self.photosAsset[indexPath.item] as PHAsset
         PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, options: nil, resultHandler: {(result, info)in
             cell.setThumbnailImage(result)
@@ -106,6 +121,14 @@ class PhotoCollectionViewController: UIViewController, UICollectionViewDataSourc
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1
+    }
+    
+    // PHPhotoLibraryChangeObserver method
+    // This callback is invoked on an arbitrary serial queue. If you need this to be handled on a specific queue, you should redispatch appropriately
+    func photoLibraryDidChange(changeInstance: PHChange!) {
+        if let changeDetails = changeInstance.changeDetailsForFetchResult(photosAsset){
+            self.collectionView.reloadData()
+        }
     }
     
     
