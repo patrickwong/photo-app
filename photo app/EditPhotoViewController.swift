@@ -33,7 +33,6 @@ class EditPhotoViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -54,19 +53,10 @@ class EditPhotoViewController: UIViewController {
         sliderControlViewInitial = sliderControlView.center
         editControlHide()
         
-        
         if selectedIndex == 0 {
-
-    
             filterLabel.text = "Brightness"
-            sliderControlView.center.y = 420
-            
+            sliderControlView.center.y = 532
         }
-        
-        
-        
-        
-        
     }
     
     func editControlHide() {
@@ -92,8 +82,5 @@ class EditPhotoViewController: UIViewController {
         editSlider.value = 0
         editSlider.maximumValue = 50
         editSlider.minimumValue = -50
-
-        
     }
-
 }
