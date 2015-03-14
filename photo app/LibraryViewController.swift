@@ -10,6 +10,8 @@ import UIKit
 
 class LibraryViewController: UIViewController {
 
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

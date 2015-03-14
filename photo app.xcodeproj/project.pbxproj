@@ -41,7 +41,7 @@
 		CAA876621AB4D26200FF4904 /* photo_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photo_appTests.swift; sourceTree = "<group>"; };
 		CAA8766C1AB4D62000FF4904 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		CAA8766E1AB4D69300FF4904 /* EditPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPhotoViewController.swift; sourceTree = "<group>"; };
-		CAA876701AB4D6F700FF4904 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		CAA876701AB4D6F700FF4904 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = ../PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,6 @@
 		CAA8763E1AB4D26200FF4904 = {
 			isa = PBXGroup;
 			children = (
-				CAA876701AB4D6F700FF4904 /* PhotoCollectionViewCell.swift */,
 				CAA876491AB4D26200FF4904 /* photo app */,
 				CAA8765F1AB4D26200FF4904 /* photo appTests */,
 				CAA876481AB4D26200FF4904 /* Products */,
@@ -86,6 +85,7 @@
 			children = (
 				CAA8764C1AB4D26200FF4904 /* AppDelegate.swift */,
 				CAA8764E1AB4D26200FF4904 /* ViewController.swift */,
+				CAA876701AB4D6F700FF4904 /* PhotoCollectionViewCell.swift */,
 				CAA876501AB4D26200FF4904 /* Main.storyboard */,
 				CAA8766E1AB4D69300FF4904 /* EditPhotoViewController.swift */,
 				CAA8766C1AB4D62000FF4904 /* LibraryViewController.swift */,

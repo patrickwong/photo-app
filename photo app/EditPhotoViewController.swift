@@ -10,6 +10,8 @@ import UIKit
 
 class EditPhotoViewController: UIViewController {
 
+    @IBOutlet weak var canvasImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,4 +34,7 @@ class EditPhotoViewController: UIViewController {
     }
     */
 
+    @IBAction func cancelDidPress(sender: AnyObject) {
+    }
+    
 }
