@@ -11,6 +11,8 @@ import UIKit
 class EditPhotoViewController: UIViewController {
 
     @IBOutlet weak var canvasImage: UIImageView!
+    @IBOutlet var editControlButtons: [UIButton]!
+    var selectedIndex: Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,4 +39,8 @@ class EditPhotoViewController: UIViewController {
     @IBAction func cancelDidPress(sender: AnyObject) {
     }
     
+    @IBAction func editControlButtonDidPress(sender: AnyObject) {
+        selectedIndex = sender.tag
+        println(selectedIndex)
+    }
 }
