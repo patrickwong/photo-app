@@ -26,4 +26,4 @@ iOS 8 [Photos Framework](https://developer.apple.com/library/prerelease/ios/docu
 iOS Developer Library [Core Image Programming Guide](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185-CH1-TPXREF101)
 
 ### Mocks
-![image](/Images/Mocks-V1.png)
+![image](/Images/Mocks-Final.png)
