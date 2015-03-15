@@ -13,14 +13,13 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoCellImage: UIImageView!
     
-    var imageAsset: PHAsset? {
+    var imageAsset: PHAsset? { // get the image
         didSet {
             self.imageManager?.requestImageForAsset(imageAsset!, targetSize: CGSize(width: 320, height: 320), contentMode: .AspectFill, options: nil) { image, info in
                 self.photoCellImage.image = image
             }
         }
     }
-    
     
     var imageManager: PHImageManager?
     

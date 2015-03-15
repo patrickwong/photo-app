@@ -45,8 +45,9 @@ class EditPhotoViewController: UIViewController {
     }
     */
 
-    @IBAction func cancelDidPress(sender: AnyObject) {
-        println("does this work")
+    @IBAction func cancelDidPress(sender: AnyObject) { // send user back to collection view
+        println("pressed cancel")
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func editControlButtonDidPress(sender: AnyObject) {

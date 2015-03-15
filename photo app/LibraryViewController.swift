@@ -54,13 +54,26 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         return cell
     }
     
-    // MARK: - PHPhotoLibraryChangeObserver
+    // PHPhotoLibraryChangeObserver
     func photoLibraryDidChange(changeInstance: PHChange!) {
-        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
             self.photoCollectionView.reloadData()
         })
     }
-
+    
+    // tap on photo to segue photo detail view
+    @IBAction func onTap(sender: UITapGestureRecognizer) {
+        println("thumbnail tapped, transitioning")
+        performSegueWithIdentifier("collectionSegue", sender: self)
+    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if (segue.identifier == "collectionSegue"){
+//            let controller:EditPhotoViewController = segue.destinationViewController as EditPhotoViewController
+//            let indexPath: NSIndexPath = self.collectionView.indexPathForCell(sender as UICollectionViewCell)!
+//            controller.index = indexPath.item
+//            controller.images = self.images
+//            controller.assetCollection = self.assetCollection
+//            }
+//    }
 }
