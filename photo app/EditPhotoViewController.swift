@@ -57,6 +57,10 @@ class EditPhotoViewController: UIViewController {
             filterLabel.text = "Brightness"
             sliderControlView.center.y = 532
         }
+        else if selectedIndex == 1 {
+            filterLabel.text = "Contrast"
+            sliderControlView.center.y = 532
+        }
     }
     
     func editControlHide() {
