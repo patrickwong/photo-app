@@ -16,6 +16,7 @@
 		CAA8766F1AB4D69300FF4904 /* EditPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA8766E1AB4D69300FF4904 /* EditPhotoViewController.swift */; };
 		CAA876711AB4D6F700FF4904 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA876701AB4D6F700FF4904 /* PhotoCollectionViewCell.swift */; };
 		D46A87511AB4DF6E0086D379 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46A87501AB4DF6E0086D379 /* Photos.framework */; };
+		D472FE831AB8847D00B24B5A /* ImageCacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D472FE821AB8847D00B24B5A /* ImageCacheController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		CAA8766E1AB4D69300FF4904 /* EditPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPhotoViewController.swift; sourceTree = "<group>"; };
 		CAA876701AB4D6F700FF4904 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = ../PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		D46A87501AB4DF6E0086D379 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		D472FE821AB8847D00B24B5A /* ImageCacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacheController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				CAA8766C1AB4D62000FF4904 /* LibraryViewController.swift */,
+				D472FE821AB8847D00B24B5A /* ImageCacheController.swift */,
 				CAA876701AB4D6F700FF4904 /* PhotoCollectionViewCell.swift */,
 				CAA8766E1AB4D69300FF4904 /* EditPhotoViewController.swift */,
 				CAA876531AB4D26200FF4904 /* Images.xcassets */,
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA876711AB4D6F700FF4904 /* PhotoCollectionViewCell.swift in Sources */,
+				D472FE831AB8847D00B24B5A /* ImageCacheController.swift in Sources */,
 				CAA8766D1AB4D62000FF4904 /* LibraryViewController.swift in Sources */,
 				CAA8764D1AB4D26200FF4904 /* AppDelegate.swift in Sources */,
 				CAA8766F1AB4D69300FF4904 /* EditPhotoViewController.swift in Sources */,

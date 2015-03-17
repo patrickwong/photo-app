@@ -11,7 +11,9 @@ import Photos
 
 let reuseIdentifier = "photocellID"
 
-class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver {
+class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+    
+    var isPresenting: Bool = true
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
@@ -19,12 +21,14 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     var imageManager = PHCachingImageManager()
     var selectedImage: Int!
     
-//    var imageCacheController: ImageCacheController!
+    var imageCacheController: ImageCacheController!
+    
+    let cachingImageManager = PHCachingImageManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
-//        imageCacheController = ImageCacheController(imageManager: imageManager, images: images, preheatSize: 1)
+        imageCacheController = ImageCacheController(imageManager: imageManager, images: images, preheatSize: 1)
         PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self) // Registering for update notifications
         
         photoCollectionView.delegate = self
@@ -73,6 +77,51 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
             controller.index = selectedImage
             controller.images = self.images
             controller.imageManager = self.imageManager
+            
+            controller.modalPresentationStyle = UIModalPresentationStyle.Custom
+            controller.transitioningDelegate = self
         }
     }
+    
+    // custom transitions
+    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = true
+        return self
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = false
+        return self
+    }
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        // The value here should be the duration of the animations scheduled in the animationTransition method
+        return 0.4
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        println("animating transition")
+        var containerView = transitionContext.containerView()
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        
+        if (isPresenting) {
+            containerView.addSubview(toViewController.view)
+            toViewController.view.alpha = 0
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                toViewController.view.alpha = 1
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+            }
+        } else {
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                fromViewController.view.alpha = 0
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+                    fromViewController.view.removeFromSuperview()
+            }
+        }
+    }
+    
+    
+    
 }
