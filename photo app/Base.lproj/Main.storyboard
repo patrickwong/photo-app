@@ -212,6 +212,9 @@
                                         <state key="normal" image="close">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didPressClose:" destination="Tei-DR-T1Q" eventType="touchUpInside" id="zvk-2p-G7g"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BBs-b8-K5f" userLabel="Checkmark">
                                         <rect key="frame" x="263" y="0.0" width="57" height="72"/>
