@@ -87,15 +87,14 @@ class EditPhotoViewController: UIViewController {
     }
     
     func filterLabelShow() {
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(0.35, animations: { () -> Void in
             self.filterLabel.alpha = 1
         })
     }
     
     func editControlShow() {
-        filterLabel.alpha = 1
-        doneButton.alpha = 0
-        cancelButton.alpha = 0
+        doneButton.alpha = 1
+        cancelButton.alpha = 1
     }
 
     func configureSlider() {
@@ -109,5 +108,11 @@ class EditPhotoViewController: UIViewController {
         editSlider.value = 0
         editSlider.maximumValue = 50
         editSlider.minimumValue = -50
+    }
+    
+    @IBAction func didPressClose(sender: AnyObject) {
+        filterLabel.alpha = 0
+        editControlShow()
+        sliderControlView.center = sliderControlViewInitial
     }
 }
