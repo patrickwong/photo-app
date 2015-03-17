@@ -66,22 +66,30 @@ class EditPhotoViewController: UIViewController {
     @IBAction func editControlButtonDidPress(sender: AnyObject) {
         selectedIndex = sender.tag
         sliderControlViewInitial = sliderControlView.center
+        filterLabel.alpha = 0
         editControlHide()
         
         if selectedIndex == 0 {
             filterLabel.text = "Brightness"
             sliderControlView.center.y = 532
+            filterLabelShow()
         }
         else if selectedIndex == 1 {
             filterLabel.text = "Contrast"
             sliderControlView.center.y = 532
+            filterLabelShow()
         }
     }
     
     func editControlHide() {
-        filterLabel.alpha = 1
         doneButton.alpha = 0
         cancelButton.alpha = 0
+    }
+    
+    func filterLabelShow() {
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.filterLabel.alpha = 1
+        })
     }
     
     func editControlShow() {
