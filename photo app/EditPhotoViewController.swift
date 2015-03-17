@@ -11,25 +11,26 @@ import Photos
 
 class EditPhotoViewController: UIViewController {
     
-    var images: PHFetchResult! = nil
-    var imageManager = PHCachingImageManager() //passed from library controller
-    var index : Int! = 0
-
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
-    
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var sliderControlView: UIView!
     @IBOutlet weak var editSlider: UISlider!
     @IBOutlet weak var filterLabel: UILabel!
-    
+
+    var images: PHFetchResult! = nil
+    var imageManager = PHCachingImageManager() //passed from library controller
+    var index : Int! = 0
+    var brightnessSliderValue: Float!
     var selectedIndex: Int! = 0
     var sliderControlViewInitial: CGPoint!
+    var editControlNames: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSlider()
+        editControlNames = ["Brightness", "Contrast", "Saturation", "Temperature", "Crop & Straighten"]
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,37 +68,18 @@ class EditPhotoViewController: UIViewController {
         selectedIndex = sender.tag
         sliderControlViewInitial = sliderControlView.center
         filterLabel.alpha = 0
-        editControlHide()
-        
-        if selectedIndex == 0 {
-            filterLabel.text = "Brightness"
-            sliderControlView.center.y = 532
-            filterLabelShow()
-        } else if selectedIndex == 1 {
-            filterLabel.text = "Contrast"
-            sliderControlView.center.y = 532
-            filterLabelShow()
-        } else if selectedIndex == 2 {
-            filterLabel.text = "Saturation"
-            sliderControlView.center.y = 532
-            filterLabelShow()
-        } else if selectedIndex == 3 {
-            filterLabel.text = "Temperature"
-            sliderControlView.center.y = 532
-            filterLabelShow()
-        } else if selectedIndex == 4 {
-            filterLabel.text = "Crop & Straigten"
-            sliderControlView.center.y = 532
-            filterLabelShow()
-        }
+        headerButtonsHide()
+        filterLabelShow()
+        filterLabel.text = editControlNames[selectedIndex]
+        sliderControlView.center.y = 532
     }
     
-    func editControlHide() {
+    func headerButtonsHide() {
         doneButton.alpha = 0
         cancelButton.alpha = 0
     }
     
-    func editControlShow() {
+    func headerButtonsShow() {
         UIView.animateWithDuration(0.35, animations: { () -> Void in
             self.doneButton.alpha = 1
             self.cancelButton.alpha = 1
@@ -125,7 +107,15 @@ class EditPhotoViewController: UIViewController {
     
     @IBAction func didPressClose(sender: AnyObject) {
         filterLabel.alpha = 0
-        editControlShow()
+        headerButtonsShow()
         sliderControlView.center = sliderControlViewInitial
+    }
+
+    @IBAction func didPressCheckmark(sender: AnyObject) {
+    
+    }
+    
+    @IBAction func didChangeSlider(sender: AnyObject) {
+        println(editSlider.value)
     }
 }
