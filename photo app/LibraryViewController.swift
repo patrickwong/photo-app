@@ -17,7 +17,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager()
-    var selectedImage : Int!
+    var selectedImage: Int!
     
 //    var imageCacheController: ImageCacheController!
     
@@ -50,9 +50,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCollectionViewCell
         cell.imageManager = imageManager
-        cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset
-        
-        // configure cell
+        cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset // configure cell
         
         return cell
     }
@@ -64,9 +62,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         })
     }
     // tap on photo to segue photo detail view
-
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("\(indexPath.item)")
+        println("segue to image \(indexPath.item)")
         selectedImage = indexPath.item
         performSegueWithIdentifier("collectionSegue", sender: self)
     }
