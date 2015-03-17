@@ -32,17 +32,18 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Do any additional setup after loading the view.
         
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     // UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        var count: Int = 0
+        if(self.images != nil){
+            count = self.images.count
+        }
+        return count
     }
-    
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCollectionViewCell
@@ -53,7 +54,6 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         return cell
     }
-    
     // PHPhotoLibraryChangeObserver
     func photoLibraryDidChange(changeInstance: PHChange!) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -61,19 +61,17 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.photoCollectionView.reloadData()
         })
     }
-    
     // tap on photo to segue photo detail view
     @IBAction func onTap(sender: UITapGestureRecognizer) {
         println("thumbnail tapped, transitioning")
         performSegueWithIdentifier("collectionSegue", sender: self)
     }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if (segue.identifier == "collectionSegue"){
-//            let controller:EditPhotoViewController = segue.destinationViewController as EditPhotoViewController
-//            let indexPath: NSIndexPath = self.collectionView.indexPathForCell(sender as UICollectionViewCell)!
-//            controller.index = indexPath.item
-//            controller.images = self.images
-//            controller.assetCollection = self.assetCollection
-//            }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "collectionSegue"){
+            let controller: EditPhotoViewController = segue.destinationViewController as EditPhotoViewController
+//            controller.index = images.indexOfObject(NSIndexPath)
+            controller.images = self.images
+            controller.imageManager = self.imageManager
+        }
+    }
 }
