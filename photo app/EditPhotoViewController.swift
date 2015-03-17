@@ -10,6 +10,10 @@ import UIKit
 import Photos
 
 class EditPhotoViewController: UIViewController {
+    
+    var images: PHFetchResult! = nil
+    var imageManager = PHCachingImageManager() //passed from library controller
+    var index : Int! = 0
 
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
@@ -26,9 +30,18 @@ class EditPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSlider()
-
-        // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+         self.displayImage()
+    }
+    
+    func displayImage(){
+        let imageManager = PHImageManager.defaultManager()
+        var ID = imageManager.requestImageForAsset(self.images[self.index] as PHAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: nil, resultHandler: {
+            (result, info)->Void in
+            self.canvasImage.image = result
+        })    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
