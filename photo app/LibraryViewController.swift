@@ -17,6 +17,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager()
+    var selectedImage : Int!
+    
 //    var imageCacheController: ImageCacheController!
     
     override func viewDidLoad() {
@@ -62,14 +64,16 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         })
     }
     // tap on photo to segue photo detail view
-    @IBAction func onTap(sender: UITapGestureRecognizer) {
-        println("thumbnail tapped, transitioning")
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        println("\(indexPath.item)")
+        selectedImage = indexPath.item
         performSegueWithIdentifier("collectionSegue", sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "collectionSegue"){
             let controller: EditPhotoViewController = segue.destinationViewController as EditPhotoViewController
-//            controller.index = images.indexOfObject(NSIndexPath)
+            controller.index = selectedImage
             controller.images = self.images
             controller.imageManager = self.imageManager
         }

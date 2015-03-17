@@ -13,7 +13,7 @@ class EditPhotoViewController: UIViewController {
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
-    var index : Int = 0
+    var index : Int! = 0
 
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
