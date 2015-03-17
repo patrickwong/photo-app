@@ -73,9 +73,20 @@ class EditPhotoViewController: UIViewController {
             filterLabel.text = "Brightness"
             sliderControlView.center.y = 532
             filterLabelShow()
-        }
-        else if selectedIndex == 1 {
+        } else if selectedIndex == 1 {
             filterLabel.text = "Contrast"
+            sliderControlView.center.y = 532
+            filterLabelShow()
+        } else if selectedIndex == 2 {
+            filterLabel.text = "Saturation"
+            sliderControlView.center.y = 532
+            filterLabelShow()
+        } else if selectedIndex == 3 {
+            filterLabel.text = "Temperature"
+            sliderControlView.center.y = 532
+            filterLabelShow()
+        } else if selectedIndex == 4 {
+            filterLabel.text = "Crop & Straigten"
             sliderControlView.center.y = 532
             filterLabelShow()
         }
@@ -86,15 +97,17 @@ class EditPhotoViewController: UIViewController {
         cancelButton.alpha = 0
     }
     
+    func editControlShow() {
+        UIView.animateWithDuration(0.35, animations: { () -> Void in
+            self.doneButton.alpha = 1
+            self.cancelButton.alpha = 1
+        })
+    }
+    
     func filterLabelShow() {
         UIView.animateWithDuration(0.35, animations: { () -> Void in
             self.filterLabel.alpha = 1
         })
-    }
-    
-    func editControlShow() {
-        doneButton.alpha = 1
-        cancelButton.alpha = 1
     }
 
     func configureSlider() {
