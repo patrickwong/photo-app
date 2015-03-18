@@ -206,7 +206,7 @@
                                         </subviews>
                                     </view>
                                     <view alpha="0.0" contentMode="scaleToFill" id="Cs6-tj-MPZ" userLabel="Slider Controls">
-                                        <rect key="frame" x="0.0" y="72" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZGd-RY-WvB" userLabel="Close">
@@ -229,9 +229,14 @@
                                                     <action selector="didPressCheckmark:" destination="Tei-DR-T1Q" eventType="touchUpInside" id="pxS-jr-2Rx"/>
                                                 </connections>
                                             </button>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="UZQ-bj-94x">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="slider_midpoint" id="w2o-x4-F8V">
+                                                <rect key="frame" x="157" y="32" width="5" height="10"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-50" maxValue="50" id="UZQ-bj-94x">
                                                 <rect key="frame" x="65" y="21" width="190" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.5"/>
                                                 <color key="minimumTrackTintColor" red="0.97254901960784312" green="0.99215686274509807" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="maximumTrackTintColor" red="0.97254901960784312" green="0.99215686274509807" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
@@ -278,6 +283,7 @@
         <image name="crop" width="22" height="22"/>
         <image name="dark_circle" width="150" height="150"/>
         <image name="saturation" width="23" height="19"/>
+        <image name="slider_midpoint" width="5" height="10"/>
         <image name="temperature" width="11" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

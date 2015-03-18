@@ -66,7 +66,6 @@ class EditPhotoViewController: UIViewController {
     */
 
     @IBAction func cancelDidPress(sender: AnyObject) { // send user back to collection view
-        println("pressed cancel")
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -79,7 +78,6 @@ class EditPhotoViewController: UIViewController {
         filterLabel.text = editControlNames[selectedIndex]
         sliderControlView.center.y = 36
         editSlider.value = editControlSliderValues[selectedIndex]
-        println(editControlSliderValues[selectedIndex])
     }
     
     func navBarButtonsHide() {
@@ -102,14 +100,15 @@ class EditPhotoViewController: UIViewController {
     
     func showSlider(){
         editControlContainer.alpha = 0
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.sliderControlView.alpha = 1
         })
     }
     
     func hideSlider(){
         sliderControlView.alpha = 0
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        filterLabel.alpha = 0
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.editControlContainer.alpha = 1
         })
     }
@@ -128,18 +127,17 @@ class EditPhotoViewController: UIViewController {
     }
     
     @IBAction func didPressClose(sender: AnyObject) {
-        filterLabel.alpha = 0
         navBarButtonsShow()
         hideSlider()
     }
 
     @IBAction func didPressCheckmark(sender: AnyObject) {
         editControlSliderValues[selectedIndex] = editSlider.value
-        editControlContainer.alpha = 1
+        navBarButtonsShow()
+        hideSlider()
     }
     
     @IBAction func didChangeSlider(sender: AnyObject) {
         println(editSlider.value)
-        editControlSliderValues[selectedIndex] = editSlider.value
     }
 }
