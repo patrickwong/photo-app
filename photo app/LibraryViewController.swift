@@ -2,7 +2,7 @@
 //  LibraryViewController.swift
 //  photo app
 //
-//  Created by Patrick Wong on 3/14/15.
+//  Created by Brian Bailey on 3/14/15.
 //  Copyright (c) 2015 Patrick Wong. All rights reserved.
 //
 
@@ -19,7 +19,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager()
-    var selectedImage: Int!
+    var selectedImage: Int! = 0
+    var movingImage: UIImageView!
+    var phImageManger: PHImageManager!
     
     var imageCacheController: ImageCacheController!
     
@@ -38,6 +40,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Do any additional setup after loading the view.
         
     }
+    override func viewWillAppear(animated: Bool) {
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,6 +52,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         var count: Int = 0
         if(self.images != nil){
             count = self.images.count
+        } else {
+            count = 50
         }
         return count
     }
@@ -69,6 +76,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("segue to image \(indexPath.item)")
         selectedImage = indexPath.item
+        
         performSegueWithIdentifier("collectionSegue", sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -83,7 +91,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    // custom transitions
+    // Implement the transition delegate methods
     func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
         isPresenting = true
         return self
@@ -93,6 +101,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         isPresenting = false
         return self
     }
+    // method that actually controls the transition
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
         // The value here should be the duration of the animations scheduled in the animationTransition method
         return 0.4
@@ -103,6 +112,11 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         var containerView = transitionContext.containerView()
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        
+//        var ID = imageManager.requestImageForAsset(self.images[self.selectedImage] as PHAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: nil, resultHandler: {
+//                (result, info)->Void in
+//                self.movingImage.image = result
+//            })
         
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
