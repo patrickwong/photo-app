@@ -13,6 +13,7 @@ class EditPhotoViewController: UIViewController {
     
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
+    @IBOutlet weak var editControlContainer: UIView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var sliderControlView: UIView!
@@ -23,7 +24,6 @@ class EditPhotoViewController: UIViewController {
     var imageManager = PHCachingImageManager() //passed from library controller
     var index : Int! = 0
     var selectedIndex: Int! = 0
-    var sliderControlViewInitial: CGPoint!
     var editControlNames: [String]!
     var editControlSliderValues: [Float]! = []
     var brightnessValue: Float! = 0
@@ -72,12 +72,12 @@ class EditPhotoViewController: UIViewController {
     
     @IBAction func editControlButtonDidPress(sender: AnyObject) {
         selectedIndex = sender.tag
-        sliderControlViewInitial = sliderControlView.center
         filterLabel.alpha = 0
         navBarButtonsHide()
+        showSlider()
         filterLabelShow()
         filterLabel.text = editControlNames[selectedIndex]
-        sliderControlView.center.y = 532
+        sliderControlView.center.y = 36
         editSlider.value = editControlSliderValues[selectedIndex]
         println(editControlSliderValues[selectedIndex])
     }
@@ -99,6 +99,20 @@ class EditPhotoViewController: UIViewController {
             self.filterLabel.alpha = 1
         })
     }
+    
+    func showSlider(){
+        editControlContainer.alpha = 0
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.sliderControlView.alpha = 1
+        })
+    }
+    
+    func hideSlider(){
+        sliderControlView.alpha = 0
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.editControlContainer.alpha = 1
+        })
+    }
 
     func configureSlider() {
         editSlider.maximumTrackTintColor = UIColor(red: 248/255, green: 253/255, blue: 255/255, alpha: 1)
@@ -116,11 +130,12 @@ class EditPhotoViewController: UIViewController {
     @IBAction func didPressClose(sender: AnyObject) {
         filterLabel.alpha = 0
         navBarButtonsShow()
-        sliderControlView.center = sliderControlViewInitial
+        hideSlider()
     }
 
     @IBAction func didPressCheckmark(sender: AnyObject) {
         editControlSliderValues[selectedIndex] = editSlider.value
+        editControlContainer.alpha = 1
     }
     
     @IBAction func didChangeSlider(sender: AnyObject) {
