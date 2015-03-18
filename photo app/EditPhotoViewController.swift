@@ -19,6 +19,7 @@ class EditPhotoViewController: UIViewController {
     @IBOutlet weak var sliderControlView: UIView!
     @IBOutlet weak var editSlider: UISlider!
     @IBOutlet weak var filterLabel: UILabel!
+    @IBOutlet weak var sliderValueOverlay: UILabel!
 
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
@@ -37,6 +38,9 @@ class EditPhotoViewController: UIViewController {
         configureSlider()
         editControlNames = ["Brightness", "Contrast", "Saturation", "Temperature", "Crop & Straighten"]
         editControlSliderValues = [brightnessValue, contrastValue, saturationValue, temperatureValue, straightenValue]
+        sliderValueOverlay.alpha = 0
+        sliderValueOverlay.layer.shadowRadius = 6
+        sliderValueOverlay.layer.shadowOpacity = 0.1
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -138,6 +142,13 @@ class EditPhotoViewController: UIViewController {
     }
     
     @IBAction func didChangeSlider(sender: AnyObject) {
-        println(editSlider.value)
+        sliderValueOverlay.text = "\(Int(editSlider.value))"
+        if editSlider.tracking == true {
+            self.sliderValueOverlay.alpha = 1
+        } else {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.sliderValueOverlay.alpha = 0
+            })
+        }
     }
 }
