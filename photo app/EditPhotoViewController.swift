@@ -22,15 +22,21 @@ class EditPhotoViewController: UIViewController {
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
     var index : Int! = 0
-    var brightnessSliderValue: Float!
     var selectedIndex: Int! = 0
     var sliderControlViewInitial: CGPoint!
     var editControlNames: [String]!
+    var editControlSliderValues: [Float]! = []
+    var brightnessValue: Float! = 0
+    var contrastValue: Float! = 0
+    var saturationValue: Float! = 0
+    var temperatureValue: Float! = 0
+    var straightenValue: Float! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSlider()
         editControlNames = ["Brightness", "Contrast", "Saturation", "Temperature", "Crop & Straighten"]
+        editControlSliderValues = [brightnessValue, contrastValue, saturationValue, temperatureValue, straightenValue]
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,18 +74,20 @@ class EditPhotoViewController: UIViewController {
         selectedIndex = sender.tag
         sliderControlViewInitial = sliderControlView.center
         filterLabel.alpha = 0
-        headerButtonsHide()
+        navBarButtonsHide()
         filterLabelShow()
         filterLabel.text = editControlNames[selectedIndex]
         sliderControlView.center.y = 532
+        editSlider.value = editControlSliderValues[selectedIndex]
+        println(editControlSliderValues[selectedIndex])
     }
     
-    func headerButtonsHide() {
+    func navBarButtonsHide() {
         doneButton.alpha = 0
         cancelButton.alpha = 0
     }
     
-    func headerButtonsShow() {
+    func navBarButtonsShow() {
         UIView.animateWithDuration(0.35, animations: { () -> Void in
             self.doneButton.alpha = 1
             self.cancelButton.alpha = 1
@@ -107,15 +115,16 @@ class EditPhotoViewController: UIViewController {
     
     @IBAction func didPressClose(sender: AnyObject) {
         filterLabel.alpha = 0
-        headerButtonsShow()
+        navBarButtonsShow()
         sliderControlView.center = sliderControlViewInitial
     }
 
     @IBAction func didPressCheckmark(sender: AnyObject) {
-    
+        editControlSliderValues[selectedIndex] = editSlider.value
     }
     
     @IBAction func didChangeSlider(sender: AnyObject) {
         println(editSlider.value)
+        editControlSliderValues[selectedIndex] = editSlider.value
     }
 }
