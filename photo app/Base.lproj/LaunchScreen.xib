@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="vQx-tb-Mr9">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="vQx-tb-Mr9">
                     <rect key="frame" x="165" y="165" width="150" height="150"/>
                 </imageView>
             </subviews>
