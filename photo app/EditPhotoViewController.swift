@@ -11,6 +11,13 @@ import Photos
 
 class EditPhotoViewController: UIViewController {
     
+<<<<<<< HEAD
+=======
+    var images: PHFetchResult! = nil
+    var imageManager = PHCachingImageManager() //passed from library controller
+    var index : Int! = 0 // indexPath of image from library
+
+>>>>>>> origin/master
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
     @IBOutlet weak var editControlContainer: UIView!
