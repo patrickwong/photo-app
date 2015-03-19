@@ -13,7 +13,6 @@ let reuseIdentifier = "photocellID"
 
 class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
 
-
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var onboardingTextBlock: UIView!
     
@@ -23,16 +22,15 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     var imageManager = PHCachingImageManager()
     var selectedImage: Int!
     
-//    var imageCacheController: ImageCacheController!
+    var imageCacheController: ImageCacheController!
     let cachingImageManager = PHCachingImageManager()
-
     
     var animationLength: NSTimeInterval = 0.4 // timing for transition animations
     
     override func viewDidLoad() {
         super.viewDidLoad()
         images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
-//        imageCacheController = ImageCacheController(imageManager: imageManager, images: images, preheatSize: 1)
+        imageCacheController = ImageCacheController(imageManager: imageManager, images: images, preheatSize: 1)
         PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self) // Registering for update notifications
         
         photoCollectionView.delegate = self
@@ -76,9 +74,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCollectionViewCell
         cell.imageManager = imageManager
-        cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset
-        
-        // configure cell
+        cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset // configure cell
         
         return cell
     }
@@ -97,9 +93,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         })
     }
     // tap on photo to segue photo detail view
-
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("\(indexPath.item)")
+        println("segue to image \(indexPath.item)")
         selectedImage = indexPath.item
         performSegueWithIdentifier("collectionSegue", sender: self)
     }
@@ -163,5 +158,4 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
             ),
             dispatch_get_main_queue(), closure)
     }
-        }
-    
+}

@@ -13,7 +13,7 @@ class EditPhotoViewController: UIViewController {
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
-    var index : Int! = 0
+    var index : Int! = 0 // indexPath of image from library
 
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
@@ -70,10 +70,6 @@ class EditPhotoViewController: UIViewController {
         
         if selectedIndex == 0 {
             filterLabel.text = "Brightness"
-            sliderControlView.center.y = 532
-        }
-        else if selectedIndex == 1 {
-            filterLabel.text = "Contrast"
             sliderControlView.center.y = 532
         }
     }
