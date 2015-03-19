@@ -72,6 +72,8 @@ class EditPhotoViewController: UIViewController {
     @IBAction func cancelDidPress(sender: AnyObject) { // send user back to collection view
         dismissViewControllerAnimated(true, completion: nil)
     }
+    @IBAction func doneDidPress(sender: AnyObject) {
+    }
     
     @IBAction func editControlButtonDidPress(sender: AnyObject) {
         selectedIndex = sender.tag
