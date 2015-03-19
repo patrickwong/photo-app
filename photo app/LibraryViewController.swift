@@ -12,18 +12,20 @@ import Photos
 let reuseIdentifier = "photocellID"
 
 class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
-    
-    var isPresenting: Bool = true
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var onboardingTextBlock: UIView!
+    
+    var isPresenting: Bool = true // detects if this is the current view
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager()
     var selectedImage: Int!
     
     var imageCacheController: ImageCacheController!
-    
     let cachingImageManager = PHCachingImageManager()
+    
+    var animationLength: NSTimeInterval = 0.4 // timing for transition animations
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,23 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Do any additional setup after loading the view.
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        onboardingTextBlock.alpha = 0.0
+        if (images.count == 0){
+            println("no images loaded")
+            self.photoCollectionView.hidden = true
+            delay(2.0, closure: { () -> () in
+                UIView.animateWithDuration(self.animationLength, animations: { () -> Void in
+                    self.onboardingTextBlock.alpha = 1.0
+                })
+            })
+        } else {
+            print("images loaded successfully")
+            self.photoCollectionView.hidden = false
+        }
+        self.photoCollectionView.reloadData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,6 +67,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         if(self.images != nil){
             count = self.images.count
         }
+        
         return count
     }
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -62,6 +82,13 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func photoLibraryDidChange(changeInstance: PHChange!) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+            if (self.images.count == 0){
+                println("no images loaded")
+                self.photoCollectionView.hidden = true
+            } else {
+                print("images loaded successfully")
+                self.photoCollectionView.hidden = false
+            }
             self.photoCollectionView.reloadData()
         })
     }
@@ -95,7 +122,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
         // The value here should be the duration of the animations scheduled in the animationTransition method
-        return 0.4
+        return animationLength
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -107,13 +134,13 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
+            UIView.animateWithDuration(animationLength, animations: { () -> Void in
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
             }
         } else {
-            UIView.animateWithDuration(0.4, animations: { () -> Void in
+            UIView.animateWithDuration(animationLength, animations: { () -> Void in
                 fromViewController.view.alpha = 0
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
@@ -122,6 +149,13 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    
-    
+    // call a method after a delay
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
 }
