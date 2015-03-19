@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -14,7 +14,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="nHt-KR-SF1">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VKp-Lq-0pl">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -29,9 +29,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="n68-jQ-bWz">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="n68-jQ-bWz">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -65,7 +65,7 @@
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="dark_circle" id="VJd-ld-jdc">
                                 <rect key="frame" x="85" y="209" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="YIu-6d-Tdz">
                                 <rect key="frame" x="41" y="209" width="239" height="150"/>
@@ -110,66 +110,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="ltl-Oo-ldB" userLabel="Footer Controls">
-                                <rect key="frame" x="0.0" y="496" width="320" height="72"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aUv-Uz-6y6" userLabel="Brightness">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="brightness">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editControlButtonDidPress:" destination="Tei-DR-T1Q" eventType="touchUpInside" id="xhq-7r-arW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kkl-vF-sJt" userLabel="Contrast">
-                                        <rect key="frame" x="64" y="0.0" width="64" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="contrast">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editControlButtonDidPress:" destination="Tei-DR-T1Q" eventType="touchUpInside" id="u3K-cQ-8ZZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Iir-KN-AUS" userLabel="Saturation">
-                                        <rect key="frame" x="128" y="0.0" width="64" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="saturation">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editControlButtonDidPress:" destination="Tei-DR-T1Q" eventType="touchUpInside" id="rrd-bR-iiL"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SAQ-kJ-Xww" userLabel="Temperature">
-                                        <rect key="frame" x="192" y="0.0" width="64" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="temperature">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editControlButtonDidPress:" destination="Tei-DR-T1Q" eventType="touchUpInside" id="Dht-Ty-fgV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FOK-Gp-khV" userLabel="Crop">
-                                        <rect key="frame" x="256" y="0.0" width="64" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="crop">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editControlButtonDidPress:" destination="Tei-DR-T1Q" eventType="touchUpInside" id="lhu-4i-1i6"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.078431372549019607" green="0.094117647058823528" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="Qwh-XT-X4c" userLabel="Header Controls">
+                            <view contentMode="scaleToFill" id="Qwh-XT-X4c" userLabel="Navbar Actions">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kN8-F3-ly1">
                                         <rect key="frame" x="22" y="22" width="48" height="30"/>
@@ -202,35 +145,13 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.094117647060000004" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="Cs6-tj-MPZ" userLabel="Slider Controls">
-                                <rect key="frame" x="0.0" y="568" width="320" height="72"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="uwR-6C-WTa" userLabel="Footer Actions">
+                                <rect key="frame" x="0.0" y="496" width="320" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-<<<<<<< HEAD
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZGd-RY-WvB" userLabel="Close">
-                                        <rect key="frame" x="0.0" y="0.0" width="57" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="close">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BBs-b8-K5f" userLabel="Checkmark">
-                                        <rect key="frame" x="263" y="0.0" width="57" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="checkmark">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="UZQ-bj-94x">
-                                        <rect key="frame" x="65" y="21" width="190" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="minimumTrackTintColor" red="0.97254901960784312" green="0.99215686274509807" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="maximumTrackTintColor" red="0.97254901960784312" green="0.99215686274509807" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </slider>
-=======
                                     <view contentMode="scaleToFill" id="ltl-Oo-ldB" userLabel="Edit Controls">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aUv-Uz-6y6" userLabel="Brightness">
                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="72"/>
@@ -310,7 +231,7 @@
                                             </button>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="slider_midpoint" id="w2o-x4-F8V">
                                                 <rect key="frame" x="157" y="32" width="5" height="10"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-50" maxValue="50" id="UZQ-bj-94x">
                                                 <rect key="frame" x="65" y="21" width="190" height="31"/>
@@ -324,7 +245,6 @@
                                             </slider>
                                         </subviews>
                                     </view>
->>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
                                 </subviews>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.094117647060000004" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -332,6 +252,14 @@
                                 <rect key="frame" x="0.0" y="77" width="320" height="414"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tBs-Ey-0eV" userLabel="Slider value">
+                                <rect key="frame" x="22" y="236" width="277" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="70"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.99215686270000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -339,15 +267,13 @@
                         <outlet property="cancelButton" destination="kN8-F3-ly1" id="ehp-KW-2Pk"/>
                         <outlet property="canvasImage" destination="kWc-UX-m4T" id="tLV-Om-Pd4"/>
                         <outlet property="doneButton" destination="Ysc-kT-jSO" id="PuK-Eg-fat"/>
+                        <outlet property="editControlContainer" destination="ltl-Oo-ldB" id="X6p-JY-hkK"/>
                         <outlet property="editSlider" destination="UZQ-bj-94x" id="VK4-tb-QQ4"/>
                         <outlet property="filterLabel" destination="pF5-Nj-8e6" id="3Ql-vJ-Z7j"/>
                         <outlet property="sliderControlView" destination="Cs6-tj-MPZ" id="vWC-bS-ra3"/>
-<<<<<<< HEAD
-=======
+                        <outlet property="sliderValueOverlay" destination="tBs-Ey-0eV" id="jzd-ho-RxU"/>
                         <outletCollection property="editControlButtons" destination="kkl-vF-sJt" collectionClass="NSMutableArray" id="BhF-yx-gi9"/>
->>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
                         <outletCollection property="editControlButtons" destination="aUv-Uz-6y6" collectionClass="NSMutableArray" id="yLA-SI-1Hn"/>
-                        <outletCollection property="editControlButtons" destination="kkl-vF-sJt" collectionClass="NSMutableArray" id="BhF-yx-gi9"/>
                         <outletCollection property="editControlButtons" destination="Iir-KN-AUS" collectionClass="NSMutableArray" id="IOo-w2-TDJ"/>
                         <outletCollection property="editControlButtons" destination="SAQ-kJ-Xww" collectionClass="NSMutableArray" id="lLB-5U-4il"/>
                         <outletCollection property="editControlButtons" destination="FOK-Gp-khV" collectionClass="NSMutableArray" id="MaA-fn-OcH"/>
@@ -366,6 +292,7 @@
         <image name="crop" width="22" height="22"/>
         <image name="dark_circle" width="150" height="150"/>
         <image name="saturation" width="23" height="19"/>
+        <image name="slider_midpoint" width="5" height="10"/>
         <image name="temperature" width="11" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

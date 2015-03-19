@@ -11,37 +11,36 @@ import Photos
 
 class EditPhotoViewController: UIViewController {
     
-    var images: PHFetchResult! = nil
-    var imageManager = PHCachingImageManager() //passed from library controller
-    var index : Int! = 0
-
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
-    
+    @IBOutlet weak var editControlContainer: UIView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var sliderControlView: UIView!
     @IBOutlet weak var editSlider: UISlider!
     @IBOutlet weak var filterLabel: UILabel!
-<<<<<<< HEAD
-    
-=======
+    @IBOutlet weak var sliderValueOverlay: UILabel!
 
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
     var index : Int! = 0
->>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
     var selectedIndex: Int! = 0
-    var sliderControlViewInitial: CGPoint!
+    var editControlNames: [String]!
+    var editControlSliderValues: [Float]! = []
+    var brightnessValue: Float! = 0
+    var contrastValue: Float! = 0
+    var saturationValue: Float! = 0
+    var temperatureValue: Float! = 0
+    var straightenValue: Float! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSlider()
-<<<<<<< HEAD
-=======
         editControlNames = ["Brightness", "Contrast", "Saturation", "Temperature", "Crop & Straighten"]
         editControlSliderValues = [brightnessValue, contrastValue, saturationValue, temperatureValue, straightenValue]
->>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
+        sliderValueOverlay.alpha = 0
+        sliderValueOverlay.layer.shadowRadius = 6
+        sliderValueOverlay.layer.shadowOpacity = 0.1
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,35 +70,51 @@ class EditPhotoViewController: UIViewController {
     */
 
     @IBAction func cancelDidPress(sender: AnyObject) { // send user back to collection view
-        println("pressed cancel")
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func editControlButtonDidPress(sender: AnyObject) {
         selectedIndex = sender.tag
-        sliderControlViewInitial = sliderControlView.center
-        editControlHide()
-        
-        if selectedIndex == 0 {
-            filterLabel.text = "Brightness"
-            sliderControlView.center.y = 532
-        }
-        else if selectedIndex == 1 {
-            filterLabel.text = "Contrast"
-            sliderControlView.center.y = 532
-        }
+        filterLabel.alpha = 0
+        navBarButtonsHide()
+        showSlider()
+        filterLabelShow()
+        filterLabel.text = editControlNames[selectedIndex]
+        sliderControlView.center.y = 36
+        editSlider.value = editControlSliderValues[selectedIndex]
     }
     
-    func editControlHide() {
-        filterLabel.alpha = 1
+    func navBarButtonsHide() {
         doneButton.alpha = 0
         cancelButton.alpha = 0
     }
     
-    func editControlShow() {
-        filterLabel.alpha = 1
-        doneButton.alpha = 0
-        cancelButton.alpha = 0
+    func navBarButtonsShow() {
+        UIView.animateWithDuration(0.35, animations: { () -> Void in
+            self.doneButton.alpha = 1
+            self.cancelButton.alpha = 1
+        })
+    }
+    
+    func filterLabelShow() {
+        UIView.animateWithDuration(0.35, animations: { () -> Void in
+            self.filterLabel.alpha = 1
+        })
+    }
+    
+    func showSlider(){
+        editControlContainer.alpha = 0
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.sliderControlView.alpha = 1
+        })
+    }
+    
+    func hideSlider(){
+        sliderControlView.alpha = 0
+        filterLabel.alpha = 0
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.editControlContainer.alpha = 1
+        })
     }
 
     func configureSlider() {
@@ -114,9 +129,6 @@ class EditPhotoViewController: UIViewController {
         editSlider.maximumValue = 50
         editSlider.minimumValue = -50
     }
-<<<<<<< HEAD
-}
-=======
     
     @IBAction func didPressClose(sender: AnyObject) {
         navBarButtonsShow()
@@ -130,7 +142,13 @@ class EditPhotoViewController: UIViewController {
     }
     
     @IBAction func didChangeSlider(sender: AnyObject) {
-        println(editSlider.value)
+        sliderValueOverlay.text = "\(Int(editSlider.value))"
+        if editSlider.tracking == true {
+            self.sliderValueOverlay.alpha = 1
+        } else {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.sliderValueOverlay.alpha = 0
+            })
+        }
     }
 }
->>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
