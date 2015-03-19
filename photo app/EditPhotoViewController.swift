@@ -73,6 +73,7 @@ class EditPhotoViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func doneDidPress(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func editControlButtonDidPress(sender: AnyObject) {
