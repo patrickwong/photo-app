@@ -23,13 +23,25 @@ class EditPhotoViewController: UIViewController {
     @IBOutlet weak var sliderControlView: UIView!
     @IBOutlet weak var editSlider: UISlider!
     @IBOutlet weak var filterLabel: UILabel!
+<<<<<<< HEAD
     
+=======
+
+    var images: PHFetchResult! = nil
+    var imageManager = PHCachingImageManager() //passed from library controller
+    var index : Int! = 0
+>>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
     var selectedIndex: Int! = 0
     var sliderControlViewInitial: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSlider()
+<<<<<<< HEAD
+=======
+        editControlNames = ["Brightness", "Contrast", "Saturation", "Temperature", "Crop & Straighten"]
+        editControlSliderValues = [brightnessValue, contrastValue, saturationValue, temperatureValue, straightenValue]
+>>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -102,4 +114,23 @@ class EditPhotoViewController: UIViewController {
         editSlider.maximumValue = 50
         editSlider.minimumValue = -50
     }
+<<<<<<< HEAD
 }
+=======
+    
+    @IBAction func didPressClose(sender: AnyObject) {
+        navBarButtonsShow()
+        hideSlider()
+    }
+
+    @IBAction func didPressCheckmark(sender: AnyObject) {
+        editControlSliderValues[selectedIndex] = editSlider.value
+        navBarButtonsShow()
+        hideSlider()
+    }
+    
+    @IBAction func didChangeSlider(sender: AnyObject) {
+        println(editSlider.value)
+    }
+}
+>>>>>>> parent of c44541b... Merge branch 'Slider-Controls'
