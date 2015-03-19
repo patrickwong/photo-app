@@ -11,15 +11,31 @@ import Photos
 
 let reuseIdentifier = "photocellID"
 
+<<<<<<< HEAD
 class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver {
+=======
+class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+>>>>>>> custom-transitions
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var onboardingTextBlock: UIView!
+    
+    var isPresenting: Bool = true // detects if this is the current view
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager()
+<<<<<<< HEAD
     var selectedImage : Int!
     
 //    var imageCacheController: ImageCacheController!
+=======
+    var selectedImage: Int!
+    
+    var imageCacheController: ImageCacheController!
+    let cachingImageManager = PHCachingImageManager()
+>>>>>>> custom-transitions
+    
+    var animationLength: NSTimeInterval = 0.4 // timing for transition animations
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +50,23 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Do any additional setup after loading the view.
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        onboardingTextBlock.alpha = 0.0
+        if (images.count == 0){
+            println("no images loaded")
+            self.photoCollectionView.hidden = true
+            delay(2.0, closure: { () -> () in
+                UIView.animateWithDuration(self.animationLength, animations: { () -> Void in
+                    self.onboardingTextBlock.alpha = 1.0
+                })
+            })
+        } else {
+            print("images loaded successfully")
+            self.photoCollectionView.hidden = false
+        }
+        self.photoCollectionView.reloadData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,6 +77,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         if(self.images != nil){
             count = self.images.count
         }
+        
         return count
     }
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -60,6 +94,13 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func photoLibraryDidChange(changeInstance: PHChange!) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
+            if (self.images.count == 0){
+                println("no images loaded")
+                self.photoCollectionView.hidden = true
+            } else {
+                print("images loaded successfully")
+                self.photoCollectionView.hidden = false
+            }
             self.photoCollectionView.reloadData()
         })
     }
@@ -76,6 +117,63 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
             controller.index = selectedImage
             controller.images = self.images
             controller.imageManager = self.imageManager
+<<<<<<< HEAD
         }
     }
+=======
+            
+            controller.modalPresentationStyle = UIModalPresentationStyle.Custom
+            controller.transitioningDelegate = self
+        }
+    }
+    
+    // custom transitions
+    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = true
+        return self
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = false
+        return self
+    }
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        // The value here should be the duration of the animations scheduled in the animationTransition method
+        return animationLength
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        println("animating transition")
+        var containerView = transitionContext.containerView()
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        
+        if (isPresenting) {
+            containerView.addSubview(toViewController.view)
+            toViewController.view.alpha = 0
+            UIView.animateWithDuration(animationLength, animations: { () -> Void in
+                toViewController.view.alpha = 1
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+            }
+        } else {
+            UIView.animateWithDuration(animationLength, animations: { () -> Void in
+                fromViewController.view.alpha = 0
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+                    fromViewController.view.removeFromSuperview()
+            }
+        }
+    }
+    
+    // call a method after a delay
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
+>>>>>>> custom-transitions
 }
