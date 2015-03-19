@@ -16,7 +16,7 @@
                                 <rect key="frame" x="85" y="209" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" id="8Kj-Xq-deb">
+                            <view contentMode="scaleToFill" id="8Kj-Xq-deb" userLabel="OnboardingTextBlock">
                                 <rect key="frame" x="40" y="209" width="239" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -79,6 +79,7 @@
                         <color key="backgroundColor" red="0.078431372549019607" green="0.094117647058823528" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="onBoardingTextBlock" destination="8Kj-Xq-deb" id="4Oq-cH-lWV"/>
                         <outlet property="photoCollectionView" destination="nHt-KR-SF1" id="2Ek-TO-Dfh"/>
                         <segue destination="Tei-DR-T1Q" kind="modal" identifier="collectionSegue" id="xQg-uQ-1c4"/>
                     </connections>
