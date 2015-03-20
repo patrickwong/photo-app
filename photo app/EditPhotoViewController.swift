@@ -122,10 +122,12 @@ class EditPhotoViewController: UIViewController {
     func configureSlider() {
         editSlider.maximumTrackTintColor = UIColor(red: 248/255, green: 253/255, blue: 255/255, alpha: 1)
         editSlider.minimumTrackTintColor = UIColor(red: 248/255, green: 253/255, blue: 255/255, alpha: 1)
-        
+        let leftTrackImage = UIImage(named: "left-track")
+        let rightTrackImage = UIImage(named: "right-track")
         let thumbImage = UIImage(named: "slider_knob")
+        editSlider.setMinimumTrackImage(leftTrackImage, forState: .Normal)
+        editSlider.setMaximumTrackImage(rightTrackImage, forState: .Normal)
         editSlider.setThumbImage(thumbImage, forState: .Normal)
-        
         editSlider.continuous = true
         editSlider.value = 0
         editSlider.maximumValue = 50
