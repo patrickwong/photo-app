@@ -232,6 +232,13 @@
                                                     <action selector="didChangeSlider:" destination="Tei-DR-T1Q" eventType="valueChanged" id="OLh-t6-l0F"/>
                                                 </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="68I-ZG-F6x" userLabel="slider value">
+                                                <rect key="frame" x="152" y="8" width="15" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="10"/>
+                                                <color key="textColor" red="1" green="0.92941176469999998" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </view>
                                 </subviews>
@@ -260,6 +267,7 @@
                         <outlet property="editSlider" destination="UZQ-bj-94x" id="VK4-tb-QQ4"/>
                         <outlet property="filterLabel" destination="pF5-Nj-8e6" id="3Ql-vJ-Z7j"/>
                         <outlet property="sliderControlView" destination="Cs6-tj-MPZ" id="vWC-bS-ra3"/>
+                        <outlet property="sliderValueLabel" destination="68I-ZG-F6x" id="W7v-Kn-G1D"/>
                         <outlet property="sliderValueOverlay" destination="tBs-Ey-0eV" id="jzd-ho-RxU"/>
                         <outletCollection property="editControlButtons" destination="kkl-vF-sJt" collectionClass="NSMutableArray" id="BhF-yx-gi9"/>
                         <outletCollection property="editControlButtons" destination="aUv-Uz-6y6" collectionClass="NSMutableArray" id="yLA-SI-1Hn"/>
@@ -281,7 +289,7 @@
         <image name="crop" width="22" height="22"/>
         <image name="dark_circle" width="150" height="150"/>
         <image name="saturation" width="23" height="19"/>
-        <image name="slider_midpoint" width="5" height="10"/>
+        <image name="slider_midpoint" width="1" height="9"/>
         <image name="temperature" width="11" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
