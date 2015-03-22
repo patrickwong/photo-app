@@ -20,6 +20,7 @@ class EditPhotoViewController: UIViewController {
     @IBOutlet weak var editSlider: UISlider!
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var sliderValueOverlay: UILabel!
+    @IBOutlet weak var sliderValueLabel: UILabel!
 
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
@@ -32,15 +33,20 @@ class EditPhotoViewController: UIViewController {
     var saturationValue: Float! = 0
     var temperatureValue: Float! = 0
     var straightenValue: Float! = 0
+    var thumbRect: CGRect!
+    var trackRect: CGRect!
+    var sliderValueLabelInitialY: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSlider()
         editControlNames = ["Brightness", "Contrast", "Saturation", "Temperature", "Crop & Straighten"]
         editControlSliderValues = [brightnessValue, contrastValue, saturationValue, temperatureValue, straightenValue]
+        sliderValueLabel.alpha = 0
         sliderValueOverlay.alpha = 0
         sliderValueOverlay.layer.shadowRadius = 6
         sliderValueOverlay.layer.shadowOpacity = 0.1
+        sliderValueLabelInitialY = sliderValueLabel.center.y
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -85,6 +91,17 @@ class EditPhotoViewController: UIViewController {
         filterLabel.text = editControlNames[selectedIndex]
         sliderControlView.center.y = 36
         editSlider.value = editControlSliderValues[selectedIndex]
+        sliderValueLabel.text = "\(Int(editSlider.value))"
+        // Get thumb rect and set slider label center to thumb center
+        thumbRect = editSlider.thumbRectForBounds(self.editSlider.bounds, trackRect: self.editSlider.frame, value: self.editSlider.value)
+        sliderValueLabel.center.x = thumbRect.midX
+        // Hide slider label when value is 0
+        if sliderValueLabel.text == "0"{
+            sliderValueLabel.alpha = 0
+        }
+        else {
+            sliderValueLabel.alpha = 1
+        }
     }
     
     func navBarButtonsHide() {
@@ -105,14 +122,14 @@ class EditPhotoViewController: UIViewController {
         })
     }
     
-    func showSlider(){
+    func showSlider() {
         editControlContainer.alpha = 0
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.sliderControlView.alpha = 1
         })
     }
     
-    func hideSlider(){
+    func hideSlider() {
         sliderControlView.alpha = 0
         filterLabel.alpha = 0
         UIView.animateWithDuration(0.1, animations: { () -> Void in
@@ -123,10 +140,12 @@ class EditPhotoViewController: UIViewController {
     func configureSlider() {
         editSlider.maximumTrackTintColor = UIColor(red: 248/255, green: 253/255, blue: 255/255, alpha: 1)
         editSlider.minimumTrackTintColor = UIColor(red: 248/255, green: 253/255, blue: 255/255, alpha: 1)
-        
+        let leftTrackImage = UIImage(named: "left-track")
+        let rightTrackImage = UIImage(named: "right-track")
         let thumbImage = UIImage(named: "slider_knob")
+        editSlider.setMinimumTrackImage(leftTrackImage, forState: .Normal)
+        editSlider.setMaximumTrackImage(rightTrackImage, forState: .Normal)
         editSlider.setThumbImage(thumbImage, forState: .Normal)
-        
         editSlider.continuous = true
         editSlider.value = 0
         editSlider.maximumValue = 50
@@ -145,12 +164,29 @@ class EditPhotoViewController: UIViewController {
     }
     
     @IBAction func didChangeSlider(sender: AnyObject) {
+        var sliderValueLabelNewY = sliderValueLabelInitialY - 5
+        sliderValueLabel.text = "\(Int(editSlider.value))"
         sliderValueOverlay.text = "\(Int(editSlider.value))"
+        // Get thumb rect and set slider label center to thumb center
+        thumbRect = editSlider.thumbRectForBounds(self.editSlider.bounds, trackRect: self.editSlider.frame, value: self.editSlider.value)
+        sliderValueLabel.center.x = thumbRect.midX
         if editSlider.tracking == true {
             self.sliderValueOverlay.alpha = 1
+            self.sliderValueLabel.alpha = 1
+            UIView.animateWithDuration(0.20, animations: { () -> Void in
+                self.sliderValueLabel.center.y = sliderValueLabelNewY
+            })
         } else {
+            UIView.animateWithDuration(0.45, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: nil, animations: { () -> Void in
+                self.sliderValueLabel.center.y = self.sliderValueLabelInitialY
+            }, completion: nil)
+
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.sliderValueOverlay.alpha = 0
+                // Fade out slider label when value is 0
+                if self.sliderValueLabel.text == "0" {
+                    self.sliderValueLabel.alpha = 0
+                }
             })
         }
     }
