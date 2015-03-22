@@ -172,13 +172,14 @@ class EditPhotoViewController: UIViewController {
         if editSlider.tracking == true {
             self.sliderValueOverlay.alpha = 1
             self.sliderValueLabel.alpha = 1
-            UIView.animateWithDuration(0.25, animations: { () -> Void in
+            UIView.animateWithDuration(0.20, animations: { () -> Void in
                 self.sliderValueLabel.center.y = sliderValueLabelNewY
             })
         } else {
-            UIView.animateWithDuration(0.20, animations: { () -> Void in
+            UIView.animateWithDuration(0.45, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: nil, animations: { () -> Void in
                 self.sliderValueLabel.center.y = self.sliderValueLabelInitialY
-            })
+            }, completion: nil)
+
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.sliderValueOverlay.alpha = 0
                 // Fade out slider label when value is 0
