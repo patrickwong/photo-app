@@ -12,6 +12,8 @@ import Photos
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoCellImage: UIImageView!
+    @IBOutlet weak var checkMarkContainer: UIView!
+    @IBOutlet weak var checkMark: UIImageView!
     
     var imageAsset: PHAsset? { // get the image
         didSet {

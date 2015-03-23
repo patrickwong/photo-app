@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -60,16 +60,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="n68-jQ-bWz">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="n68-jQ-bWz" userLabel="photoCellImage">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" id="HaZ-N3-Hrw" userLabel="checkMarkContainer">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="gold_checkmark" id="Gx8-n9-gk5" userLabel="checkMark">
+                                                            <rect key="frame" x="34" y="40" width="32" height="24"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.078431372549019607" green="0.094117647058823528" blue="0.10196078431372549" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <gestureRecognizers/>
                                         <size key="customSize" width="100" height="100"/>
                                         <connections>
+                                            <outlet property="checkMark" destination="Gx8-n9-gk5" id="Wn5-Tq-JIv"/>
+                                            <outlet property="checkMarkContainer" destination="HaZ-N3-Hrw" id="Aiq-Xr-67N"/>
                                             <outlet property="photoCellImage" destination="n68-jQ-bWz" id="3kf-Yq-Sth"/>
                                         </connections>
                                     </collectionViewCell>
@@ -280,6 +293,7 @@
         <image name="contrast" width="22" height="22"/>
         <image name="crop" width="22" height="22"/>
         <image name="dark_circle" width="150" height="150"/>
+        <image name="gold_checkmark" width="32" height="24"/>
         <image name="saturation" width="23" height="19"/>
         <image name="slider_midpoint" width="5" height="10"/>
         <image name="temperature" width="11" height="22"/>

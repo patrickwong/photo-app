@@ -14,16 +14,19 @@ class EditPhotoViewController: UIViewController {
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
     @IBOutlet weak var editControlContainer: UIView!
+    
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var sliderControlView: UIView!
+    
     @IBOutlet weak var editSlider: UISlider!
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var sliderValueOverlay: UILabel!
 
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
-    var index : Int! = 0
+    var index : Int! = 0 // location of the image
+    
     var selectedIndex: Int! = 0
     var editControlNames: [String]!
     var editControlSliderValues: [Float]! = []
@@ -59,23 +62,24 @@ class EditPhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    // Navigation
     @IBAction func cancelDidPress(sender: AnyObject) { // send user back to collection view
         dismissViewControllerAnimated(true, completion: nil)
     }
-    @IBAction func doneDidPress(sender: AnyObject) {
+    @IBAction func doneDidPress(sender: AnyObject) { // sender user back to collection view
         dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        let controller: LibraryViewController = segue.destinationViewController as LibraryViewController
+        controller.selectedImage = index
+        controller.images = self.images
+        controller.imageManager = self.imageManager
     }
     
+    // Editing controls
     @IBAction func editControlButtonDidPress(sender: AnyObject) {
         selectedIndex = sender.tag
         filterLabel.alpha = 0
