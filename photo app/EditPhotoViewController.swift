@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import AssetsLibrary
 
 class EditPhotoViewController: UIViewController {
     
@@ -21,7 +22,7 @@ class EditPhotoViewController: UIViewController {
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var sliderValueOverlay: UILabel!
     @IBOutlet weak var sliderValueLabel: UILabel!
-
+    
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
     var index : Int! = 0
@@ -36,6 +37,10 @@ class EditPhotoViewController: UIViewController {
     var thumbRect: CGRect!
     var trackRect: CGRect!
     var sliderValueLabelInitialY: CGFloat!
+    var context: CIContext!
+    var filter: CIFilter!
+    var beginImage: CIImage!
+    var orientation: UIImageOrientation = .Up
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +63,23 @@ class EditPhotoViewController: UIViewController {
         var ID = imageManager.requestImageForAsset(self.images[self.index] as PHAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: nil, resultHandler: {
             (result, info)->Void in
             self.canvasImage.image = result
-        })    }
+            
+            // Get image orientation & create CIImage
+            self.orientation = result.imageOrientation
+            self.beginImage = CIImage(image: self.canvasImage.image)
+            //Set filter values
+            self.filter = CIFilter(name: "CIExposureAdjust")
+            self.filter.setValue(self.beginImage, forKey: kCIInputImageKey)
+            self.filter.setValue(0.5, forKey: kCIInputEVKey)
+            // Create context
+            self.context = CIContext(options:nil)
+            // Create image copy with filter applied
+            let cgimg = self.context.createCGImage(self.filter.outputImage, fromRect: self.filter.outputImage.extent())
+            // Update image with filtered copy
+            let newImage = UIImage(CGImage: cgimg, scale: 1, orientation: self.orientation)
+            self.canvasImage.image = newImage
+        })
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,7 +99,15 @@ class EditPhotoViewController: UIViewController {
     @IBAction func cancelDidPress(sender: AnyObject) { // send user back to collection view
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
     @IBAction func doneDidPress(sender: AnyObject) {
+        let imageToSave = filter.outputImage
+        let softwareContext = CIContext(options:[kCIContextUseSoftwareRenderer: true])
+        let cgimg = softwareContext.createCGImage(imageToSave, fromRect:imageToSave.extent())
+        let library = ALAssetsLibrary()
+        library.writeImageToSavedPhotosAlbum(cgimg,
+            metadata:imageToSave.properties(),
+            completionBlock:nil)
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -163,13 +192,24 @@ class EditPhotoViewController: UIViewController {
         hideSlider()
     }
     
-    @IBAction func didChangeSlider(sender: AnyObject) {
+    @IBAction func didChangeSlider(sender: UISlider) {
         var sliderValueLabelNewY = sliderValueLabelInitialY - 5
         sliderValueLabel.text = "\(Int(editSlider.value))"
         sliderValueOverlay.text = "\(Int(editSlider.value))"
+        
         // Get thumb rect and set slider label center to thumb center
         thumbRect = editSlider.thumbRectForBounds(self.editSlider.bounds, trackRect: self.editSlider.frame, value: self.editSlider.value)
         sliderValueLabel.center.x = thumbRect.midX
+        
+        //Filter image per slider value
+        let sliderValue = sender.value
+        filter.setValue(sliderValue, forKey: kCIInputEVKey)
+        let outputImage = filter.outputImage
+        let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent())
+        let newImage = UIImage(CGImage: cgimg, scale: 1, orientation: self.orientation)
+        self.canvasImage.image = newImage
+        
+        // Conditional for displaying value labels
         if editSlider.tracking == true {
             self.sliderValueOverlay.alpha = 1
             self.sliderValueLabel.alpha = 1
@@ -177,10 +217,9 @@ class EditPhotoViewController: UIViewController {
                 self.sliderValueLabel.center.y = sliderValueLabelNewY
             })
         } else {
-            UIView.animateWithDuration(0.45, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: nil, animations: { () -> Void in
+            UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: nil, animations: { () -> Void in
                 self.sliderValueLabel.center.y = self.sliderValueLabelInitialY
             }, completion: nil)
-
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.sliderValueOverlay.alpha = 0
                 // Fade out slider label when value is 0
