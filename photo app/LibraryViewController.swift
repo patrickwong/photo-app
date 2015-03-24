@@ -2,7 +2,6 @@
 //  LibraryViewController.swift
 //  photo app
 //
-//  Created by Patrick Wong on 3/14/15.
 //  Copyright (c) 2015 Patrick Wong. All rights reserved.
 //
 
@@ -21,11 +20,13 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager()
     var selectedImage: Int!
+    var cellSelectionFrame: CGRect!
     
     var imageCacheController: ImageCacheController!
     let cachingImageManager = PHCachingImageManager()
     
     var animationLength: NSTimeInterval = 0.5 // timing for transition animations
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCollectionViewCell
         cell.imageManager = imageManager
         cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset // configure cell
+        cell.checkMarkContainer.hidden = true
         
         return cell
     }
@@ -96,6 +98,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("segue to image \(indexPath.item)")
         selectedImage = indexPath.item
+        var cellSelection = collectionView.cellForItemAtIndexPath(indexPath)
+        cellSelectionFrame = cellSelection?.frame
+        
         performSegueWithIdentifier("collectionSegue", sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -121,7 +126,6 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         return self
     }
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        // The value here should be the duration of the animations scheduled in the animationTransition method
         return animationLength
     }
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -129,21 +133,64 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         var containerView = transitionContext.containerView()
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        var movingImage = UIImageView(frame: cellSelectionFrame)
+        
+        var phAsset = images[selectedImage] as PHAsset // make a copy of the image
+        imageManager.requestImageForAsset(phAsset, targetSize: CGSize(width: 320, height: 320), contentMode: .AspectFill, options: nil) { image, info in
+            movingImage.image = image
+        }
+        photoCollectionView.addSubview(movingImage)
+        
+//        var window = UIApplication.sharedApplication().keyWindow! // add image to master view
+//        window.addSubview(movingImage)
+    
         
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
+            toViewController.view.alpha = 0.0
+            var editPhotoViewController = toViewController as EditPhotoViewController
+            var libraryEditViewController = fromViewController as LibraryViewController
+            var finalImageView = editPhotoViewController.canvasImage
+            
+            editPhotoViewController.canvasImage.hidden = true
+
             UIView.animateWithDuration(animationLength, animations: { () -> Void in
+                toViewController.view.alpha = 1
+                 toViewController.view.alpha = 1
+                 fromViewController.view.alpha = 0
+                 movingImage.frame = finalImageView.frame
+                 movingImage.contentMode = finalImageView.contentMode // making sure they have the same aspect ratio
+                 movingImage.clipsToBounds = finalImageView.clipsToBounds
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+                    editPhotoViewController.canvasImage.hidden = false
+                    movingImage.removeFromSuperview()
+            }
+        } else {
+//            containerView.addSubview(toViewController.view)
+            fromViewController.view.alpha = 0.0
+        
+            var libraryEditViewController = toViewController as LibraryViewController
+            var editPhotoViewController = fromViewController as EditPhotoViewController
+            var finalImageView = libraryEditViewController.cellSelectionFrame
+            
+            var startingImageView = editPhotoViewController.canvasImage.frame
+            movingImage.frame = startingImageView
+            
+            UIView.animateWithDuration(animationLength, animations: { () -> Void in
+                fromViewController.view.alpha = 0
+                movingImage.frame = self.cellSelectionFrame
+
+                fromViewController.view.alpha = 0.0
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
-            }
-        } else {
-            UIView.animateWithDuration(animationLength, animations: { () -> Void in
-                fromViewController.view.alpha = 0
-                }) { (finished: Bool) -> Void in
-                    transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
+                    libraryEditViewController.view.hidden = false
+                    editPhotoViewController.view.hidden = true
+//                    fromViewController.view.removeFromSuperview()
+                    movingImage.removeFromSuperview()
             }
         }
     }
