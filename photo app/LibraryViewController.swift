@@ -2,6 +2,7 @@
 //  LibraryViewController.swift
 //  photo app
 //
+//  Created by Brian Bailey on 3/17/15.
 //  Copyright (c) 2015 Patrick Wong. All rights reserved.
 //
 
@@ -170,30 +171,27 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
                     movingImage.removeFromSuperview()
             }
         } else {
-//            containerView.addSubview(toViewController.view)
-            fromViewController.view.alpha = 0.0
-        
             var libraryViewController = toViewController as LibraryViewController
             var editPhotoViewController = fromViewController as EditPhotoViewController
             var finalImageView = libraryViewController.cellSelectionFrame
-            
             var startingImageViewFrame = editPhotoViewController.canvasImage.frame
-            movingImage.frame = startingImageViewFrame
-            movingImage.contentMode = .ScaleAspectFill
-            movingImage.clipsToBounds = libraryViewController.photoCollectionView.clipsToBounds
             
-            UIView.animateWithDuration(animationLength, animations: { () -> Void in
-                fromViewController.view.alpha = 0
-                movingImage.frame = self.cellSelectionFrame
-
+            movingImage.contentMode = .ScaleAspectFill
+            
+            movingImage.frame = startingImageViewFrame
+            UIView.animateWithDuration(animationLength/2, animations: { () -> Void in
                 fromViewController.view.alpha = 0.0
+            })
+            UIView.animateWithDuration(animationLength, animations: { () -> Void in
+                movingImage.frame = self.cellSelectionFrame
+                movingImage.clipsToBounds = libraryViewController.photoCollectionView.clipsToBounds
+                
                 toViewController.view.alpha = 1
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
                     libraryViewController.view.hidden = false
                     editPhotoViewController.view.hidden = true
-//                    fromViewController.view.removeFromSuperview()
                     movingImage.removeFromSuperview()
             }
         }
