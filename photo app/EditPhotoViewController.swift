@@ -25,8 +25,9 @@ class EditPhotoViewController: UIViewController {
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
-    var index : Int! = 0
+    var index : Int! = 0 // image IndexPath
     var selectedIndex: Int! = 0
+    
     var editControlNames: [String]!
     var editControlSliderValues: [Float]! = []
     var brightnessValue: Float! = 0

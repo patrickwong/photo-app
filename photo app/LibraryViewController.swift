@@ -27,7 +27,6 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var animationLength: NSTimeInterval = 0.5 // timing for transition animations
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
@@ -58,10 +57,12 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         self.photoCollectionView.reloadData()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     // UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var count: Int = 0
@@ -71,15 +72,17 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         return count
     }
+    
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCollectionViewCell
         cell.imageManager = imageManager
         cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset // configure cell
-        cell.checkMarkContainer.hidden = true
+//        cell.checkMarkContainer.hidden = true
         
         return cell
     }
+    
     // PHPhotoLibraryChangeObserver
     func photoLibraryDidChange(changeInstance: PHChange!) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -94,12 +97,13 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.photoCollectionView.reloadData()
         })
     }
+    
     // tap on photo to segue photo detail view
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("segue to image \(indexPath.item)")
         selectedImage = indexPath.item
         var cellSelection = collectionView.cellForItemAtIndexPath(indexPath)
-        cellSelectionFrame = cellSelection?.frame
+        cellSelectionFrame = cellSelection?.superview?.convertRect(cellSelection!.frame, toView: nil) //cellSelection?.frame
         
         performSegueWithIdentifier("collectionSegue", sender: self)
     }
@@ -139,16 +143,15 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         imageManager.requestImageForAsset(phAsset, targetSize: CGSize(width: 320, height: 320), contentMode: .AspectFill, options: nil) { image, info in
             movingImage.image = image
         }
-        photoCollectionView.addSubview(movingImage)
+//        photoCollectionView.addSubview(movingImage)
         
-//        var window = UIApplication.sharedApplication().keyWindow! // add image to master view
-//        window.addSubview(movingImage)
+        var window = UIApplication.sharedApplication().keyWindow! // add image to master view
+        window.addSubview(movingImage)
     
         
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
-            toViewController.view.alpha = 0.0
             var editPhotoViewController = toViewController as EditPhotoViewController
             var libraryEditViewController = fromViewController as LibraryViewController
             var finalImageView = editPhotoViewController.canvasImage
@@ -156,7 +159,6 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
             editPhotoViewController.canvasImage.hidden = true
 
             UIView.animateWithDuration(animationLength, animations: { () -> Void in
-                toViewController.view.alpha = 1
                  toViewController.view.alpha = 1
                  fromViewController.view.alpha = 0
                  movingImage.frame = finalImageView.frame
@@ -171,12 +173,14 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
 //            containerView.addSubview(toViewController.view)
             fromViewController.view.alpha = 0.0
         
-            var libraryEditViewController = toViewController as LibraryViewController
+            var libraryViewController = toViewController as LibraryViewController
             var editPhotoViewController = fromViewController as EditPhotoViewController
-            var finalImageView = libraryEditViewController.cellSelectionFrame
+            var finalImageView = libraryViewController.cellSelectionFrame
             
-            var startingImageView = editPhotoViewController.canvasImage.frame
-            movingImage.frame = startingImageView
+            var startingImageViewFrame = editPhotoViewController.canvasImage.frame
+            movingImage.frame = startingImageViewFrame
+            movingImage.contentMode = .ScaleAspectFill
+            movingImage.clipsToBounds = libraryViewController.photoCollectionView.clipsToBounds
             
             UIView.animateWithDuration(animationLength, animations: { () -> Void in
                 fromViewController.view.alpha = 0
@@ -187,7 +191,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()
-                    libraryEditViewController.view.hidden = false
+                    libraryViewController.view.hidden = false
                     editPhotoViewController.view.hidden = true
 //                    fromViewController.view.removeFromSuperview()
                     movingImage.removeFromSuperview()
