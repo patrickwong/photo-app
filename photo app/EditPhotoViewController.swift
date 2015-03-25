@@ -73,7 +73,7 @@ class EditPhotoViewController: UIViewController {
             //Set filter values
             self.filter = CIFilter(name: "CIExposureAdjust")
             self.filter.setValue(self.beginImage, forKey: kCIInputImageKey)
-            self.filter.setValue(0.5, forKey: kCIInputEVKey)
+            self.filter.setValue(0, forKey: kCIInputEVKey)
             // Create context
             self.context = CIContext(options:nil)
             // Create image copy with filter applied
