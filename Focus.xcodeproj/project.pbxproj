@@ -390,7 +390,7 @@
 				INFOPLIST_FILE = "photo appTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FocusTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photo app.app/photo app";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus.app/Focus";
 			};
 			name = Debug;
 		};
@@ -405,7 +405,7 @@
 				INFOPLIST_FILE = "photo appTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FocusTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photo app.app/photo app";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus.app/Focus";
 			};
 			name = Release;
 		};
