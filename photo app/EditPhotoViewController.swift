@@ -15,10 +15,8 @@ class EditPhotoViewController: UIViewController {
     @IBOutlet weak var canvasImage: UIImageView!
     @IBOutlet var editControlButtons: [UIButton]!
     @IBOutlet weak var editControlContainer: UIView!
-    
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    
     @IBOutlet weak var sliderControlView: UIView!
     @IBOutlet weak var editSlider: UISlider!
     @IBOutlet weak var filterLabel: UILabel!
