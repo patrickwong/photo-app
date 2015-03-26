@@ -79,8 +79,6 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCollectionViewCell
         cell.imageManager = imageManager
         cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset // configure cell
-//        cell.checkMarkContainer.hidden = true
-        
         return cell
     }
     

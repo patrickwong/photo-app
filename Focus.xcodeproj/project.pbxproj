@@ -30,13 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CAA876471AB4D26200FF4904 /* photo app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "photo app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAA876471AB4D26200FF4904 /* Focus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Focus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA8764B1AB4D26200FF4904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAA8764C1AB4D26200FF4904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA876511AB4D26200FF4904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAA876531AB4D26200FF4904 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CAA876561AB4D26200FF4904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CAA8765C1AB4D26200FF4904 /* photo appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "photo appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAA8765C1AB4D26200FF4904 /* FocusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA876611AB4D26200FF4904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAA876621AB4D26200FF4904 /* photo_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photo_appTests.swift; sourceTree = "<group>"; };
 		CAA8766C1AB4D62000FF4904 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -78,8 +78,8 @@
 		CAA876481AB4D26200FF4904 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CAA876471AB4D26200FF4904 /* photo app.app */,
-				CAA8765C1AB4D26200FF4904 /* photo appTests.xctest */,
+				CAA876471AB4D26200FF4904 /* Focus.app */,
+				CAA8765C1AB4D26200FF4904 /* FocusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,9 +128,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CAA876461AB4D26200FF4904 /* photo app */ = {
+		CAA876461AB4D26200FF4904 /* Focus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CAA876661AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "photo app" */;
+			buildConfigurationList = CAA876661AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "Focus" */;
 			buildPhases = (
 				CAA876431AB4D26200FF4904 /* Sources */,
 				CAA876441AB4D26200FF4904 /* Frameworks */,
@@ -140,14 +140,14 @@
 			);
 			dependencies = (
 			);
-			name = "photo app";
+			name = Focus;
 			productName = "photo app";
-			productReference = CAA876471AB4D26200FF4904 /* photo app.app */;
+			productReference = CAA876471AB4D26200FF4904 /* Focus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CAA8765B1AB4D26200FF4904 /* photo appTests */ = {
+		CAA8765B1AB4D26200FF4904 /* FocusTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CAA876691AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "photo appTests" */;
+			buildConfigurationList = CAA876691AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "FocusTests" */;
 			buildPhases = (
 				CAA876581AB4D26200FF4904 /* Sources */,
 				CAA876591AB4D26200FF4904 /* Frameworks */,
@@ -158,9 +158,9 @@
 			dependencies = (
 				CAA8765E1AB4D26200FF4904 /* PBXTargetDependency */,
 			);
-			name = "photo appTests";
+			name = FocusTests;
 			productName = "photo appTests";
-			productReference = CAA8765C1AB4D26200FF4904 /* photo appTests.xctest */;
+			productReference = CAA8765C1AB4D26200FF4904 /* FocusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +182,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CAA876421AB4D26200FF4904 /* Build configuration list for PBXProject "photo app" */;
+			buildConfigurationList = CAA876421AB4D26200FF4904 /* Build configuration list for PBXProject "Focus" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -195,8 +195,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CAA876461AB4D26200FF4904 /* photo app */,
-				CAA8765B1AB4D26200FF4904 /* photo appTests */,
+				CAA876461AB4D26200FF4904 /* Focus */,
+				CAA8765B1AB4D26200FF4904 /* FocusTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,7 +247,7 @@
 /* Begin PBXTargetDependency section */
 		CAA8765E1AB4D26200FF4904 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CAA876461AB4D26200FF4904 /* photo app */;
+			target = CAA876461AB4D26200FF4904 /* Focus */;
 			targetProxy = CAA8765D1AB4D26200FF4904 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -357,7 +357,7 @@
 				INFOPLIST_FILE = "photo app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Focus;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -370,7 +370,7 @@
 				INFOPLIST_FILE = "photo app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Focus;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -389,8 +389,8 @@
 				);
 				INFOPLIST_FILE = "photo appTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photo app.app/photo app";
+				PRODUCT_NAME = FocusTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus.app/Focus";
 			};
 			name = Debug;
 		};
@@ -404,15 +404,15 @@
 				);
 				INFOPLIST_FILE = "photo appTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/photo app.app/photo app";
+				PRODUCT_NAME = FocusTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus.app/Focus";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CAA876421AB4D26200FF4904 /* Build configuration list for PBXProject "photo app" */ = {
+		CAA876421AB4D26200FF4904 /* Build configuration list for PBXProject "Focus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CAA876641AB4D26200FF4904 /* Debug */,
@@ -421,7 +421,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CAA876661AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "photo app" */ = {
+		CAA876661AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "Focus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CAA876671AB4D26200FF4904 /* Debug */,
@@ -430,7 +430,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CAA876691AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "photo appTests" */ = {
+		CAA876691AB4D26200FF4904 /* Build configuration list for PBXNativeTarget "FocusTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CAA8766A1AB4D26200FF4904 /* Debug */,

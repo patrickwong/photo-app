@@ -73,7 +73,7 @@ class EditPhotoViewController: UIViewController {
             //Set filter values
             self.filter = CIFilter(name: "CIExposureAdjust")
             self.filter.setValue(self.beginImage, forKey: kCIInputImageKey)
-            self.filter.setValue(0.5, forKey: kCIInputEVKey)
+            self.filter.setValue(0, forKey: kCIInputEVKey)
             // Create context
             self.context = CIContext(options:nil)
             // Create image copy with filter applied
@@ -113,7 +113,7 @@ class EditPhotoViewController: UIViewController {
         filterLabel.text = editControlNames[selectedIndex]
         sliderControlView.center.y = 36
         editSlider.value = editControlSliderValues[selectedIndex]
-        sliderValueLabel.text = "\(Int(editSlider.value))"
+        sliderValueLabel.text = "\(Int(editSlider.value * 100 / 2))"
         // Get thumb rect and set slider label center to thumb center
         thumbRect = editSlider.thumbRectForBounds(self.editSlider.bounds, trackRect: self.editSlider.frame, value: self.editSlider.value)
         sliderValueLabel.center.x = thumbRect.midX
@@ -170,8 +170,8 @@ class EditPhotoViewController: UIViewController {
         editSlider.setThumbImage(thumbImage, forState: .Normal)
         editSlider.continuous = true
         editSlider.value = 0
-        editSlider.maximumValue = 50
-        editSlider.minimumValue = -50
+        editSlider.maximumValue = 1
+        editSlider.minimumValue = -1
     }
     
     @IBAction func didPressClose(sender: AnyObject) {
@@ -187,8 +187,8 @@ class EditPhotoViewController: UIViewController {
     
     @IBAction func didChangeSlider(sender: UISlider) {
         var sliderValueLabelNewY = sliderValueLabelInitialY - 5
-        sliderValueLabel.text = "\(Int(editSlider.value))"
-        sliderValueOverlay.text = "\(Int(editSlider.value))"
+        sliderValueLabel.text = "\(Int(editSlider.value * 100 / 2))"
+        sliderValueOverlay.text = "\(Int(editSlider.value * 100 / 2))"
         
         // Get thumb rect and set slider label center to thumb center
         thumbRect = editSlider.thumbRectForBounds(self.editSlider.bounds, trackRect: self.editSlider.frame, value: self.editSlider.value)
