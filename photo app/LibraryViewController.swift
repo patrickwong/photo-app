@@ -11,12 +11,13 @@ import Photos
 
 let reuseIdentifier = "photocellID"
 
-class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+class LibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, PHPhotoLibraryChangeObserver, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning, SaveDelegate {
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var onBoardingTextBlock: UIView!
     
     var isPresenting: Bool = true // detects if this is the current view
+//    var doneButtonDidPress: Bool = true // user pressed Done button in EditPhotoViewController
     
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager()
@@ -72,6 +73,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         return count
+    }
+    
+    func doneDidPress(Bool) {
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
