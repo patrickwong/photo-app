@@ -10,6 +10,10 @@ import UIKit
 import Photos
 import AssetsLibrary
 
+protocol SaveDelegate {
+    func doneDidPress(Bool)
+}
+
 class EditPhotoViewController: UIViewController {
     
     @IBOutlet weak var canvasImage: UIImageView!
@@ -26,8 +30,9 @@ class EditPhotoViewController: UIViewController {
     var images: PHFetchResult! = nil
     var imageManager = PHCachingImageManager() //passed from library controller
     var index : Int! = 0 // image IndexPath
-    var selectedIndex: Int! = 0
+    var delegate:SaveDelegate? = nil
     
+    var selectedIndex: Int! = 0
     var editControlNames: [String]!
     var editControlSliderValues: [Float]! = []
     var brightnessValue: Float! = 0
@@ -92,14 +97,17 @@ class EditPhotoViewController: UIViewController {
     }
     
     @IBAction func doneDidPress(sender: AnyObject) {
-        let imageToSave = filter.outputImage
-        let softwareContext = CIContext(options:[kCIContextUseSoftwareRenderer: true])
-        let cgimg = softwareContext.createCGImage(imageToSave, fromRect:imageToSave.extent())
-        let library = ALAssetsLibrary()
-        library.writeImageToSavedPhotosAlbum(cgimg,
-            metadata:imageToSave.properties(),
-            completionBlock:nil)
+        println("Saving images does not work in Simulator. Try testing the feature on a device.")
+//        let imageToSave = filter.outputImage
+//        let softwareContext = CIContext(options:[kCIContextUseSoftwareRenderer: true])
+//        let cgimg = softwareContext.createCGImage(imageToSave, fromRect:imageToSave.extent())
+//        let library = ALAssetsLibrary()
+//        library.writeImageToSavedPhotosAlbum(cgimg,
+//            metadata:imageToSave.properties(),
+//            completionBlock:nil)
+        
         dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     @IBAction func editControlButtonDidPress(sender: AnyObject) {

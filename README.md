@@ -1,29 +1,25 @@
-# Project Circle (Photo App)
+# Focus
 
-### Goals
-#### Filters
-* brightness
-* saturation
-* contrast
-* cropping and rotation (straightening)
-* temperature
+Focus is a proof of concept app that explores iOS' [Photos Framework](https://developer.apple.com/library/prerelease/ios/documentation/Photos/Reference/Photos_Framework/index.html#//apple_ref/doc/uid/TP40014408), which allows us to request assets and commit edits to the photo library.
 
-### Notes
-Project [kickoff meeting](https://github.com/patrickwong/photo-app/wiki/Kickoff-Meeting) and preliminary [to-do list](https://github.com/patrickwong/photo-app/wiki/To-Do)
+Designers [Patrick Wong](https://twitter.com/patrickswong), [Brian Bailey](https://twitter.com/bbaiIey), and [Nico Bories](https://twitter.com/nicobories) fetched, presented, and stored images in a custom collection using a nondestructive image adjustment process that allow users to revert or alter their edits.
 
-Team [vacation and leave](https://github.com/patrickwong/photo-app/wiki/Leave)
+Our custom editing allows controls for brightness, saturation, contrast, cropping, rotation, and temperature.
 
-Will migrate [wiki](https://github.com/patrickwong/photo-app/wiki) over to Readme and Issues.
 
 ### State
-![image](/Images/whiteboard-1.JPG)
-
-![image](/Images/imagePicker.gif)
+![image](/Images/walkthru-150328a.gif)
 
 ### References
 iOS 8 [Photos Framework](https://developer.apple.com/library/prerelease/ios/documentation/Photos/Reference/Photos_Framework/index.html#//apple_ref/doc/uid/TP40014408)
 
-iOS Developer Library [Core Image Programming Guide](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185-CH1-TPXREF101)
+iOS Developer Library [Core Image Programming Guide](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185-CH1-TPXREF101) (deprecated)
 
-### Mocks
+### Progress
+![image](/Images/whiteboard-1.JPG)
+
+![image](/Images/imagePicker.gif)
+
 ![image](/Images/Mocks-Final.png)
+
+![image](/Images/wireframe-150328.gif)
