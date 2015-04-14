@@ -66,7 +66,7 @@ class EditPhotoViewController: UIViewController {
     
     func displayImage(){
         let imageManager = PHImageManager.defaultManager()
-        var ID = imageManager.requestImageForAsset(self.images[self.index] as PHAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: nil, resultHandler: {
+        var ID = imageManager.requestImageForAsset(self.images[self.index] as! PHAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: nil, resultHandler: {
             (result, info)->Void in
             self.canvasImage.image = result
             

@@ -80,7 +80,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as PhotoCollectionViewCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PhotoCollectionViewCell
         cell.imageManager = imageManager
         cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset // configure cell
         return cell
@@ -112,7 +112,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "collectionSegue"){
-            let controller: EditPhotoViewController = segue.destinationViewController as EditPhotoViewController
+            let controller: EditPhotoViewController = segue.destinationViewController as! EditPhotoViewController
             controller.index = selectedImage
             controller.images = self.images
             controller.imageManager = self.imageManager
@@ -123,7 +123,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     // custom transitions
-    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = true
         return self
     }
@@ -142,7 +142,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         var movingImage = UIImageView(frame: cellSelectionFrame)
         
-        var phAsset = images[selectedImage] as PHAsset // make a copy of the image
+        var phAsset = images[selectedImage] as! PHAsset // make a copy of the image
         imageManager.requestImageForAsset(phAsset, targetSize: CGSize(width: 320, height: 320), contentMode: .AspectFill, options: nil) { image, info in
             movingImage.image = image
         }
@@ -155,8 +155,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
-            var editPhotoViewController = toViewController as EditPhotoViewController
-            var libraryEditViewController = fromViewController as LibraryViewController
+            var editPhotoViewController = toViewController as! EditPhotoViewController
+            var libraryEditViewController = fromViewController as! LibraryViewController
             var finalImageView = editPhotoViewController.canvasImage
             
             editPhotoViewController.canvasImage.hidden = true
@@ -173,8 +173,8 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
                     movingImage.removeFromSuperview()
             }
         } else {
-            var libraryViewController = toViewController as LibraryViewController
-            var editPhotoViewController = fromViewController as EditPhotoViewController
+            var libraryViewController = toViewController as! LibraryViewController
+            var editPhotoViewController = fromViewController as! EditPhotoViewController
             var finalImageView = libraryViewController.cellSelectionFrame
             var startingImageViewFrame = editPhotoViewController.canvasImage.frame
             
