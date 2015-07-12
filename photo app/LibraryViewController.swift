@@ -46,7 +46,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewWillAppear(animated: Bool) {
         onBoardingTextBlock.alpha = 0.0
         if (images.count == 0){
-            println("no images loaded")
+            print("no images loaded")
             self.photoCollectionView.hidden = true
             delay(1.5, closure: { () -> () in
                 UIView.animateWithDuration(self.animationLength, animations: { () -> Void in
@@ -54,7 +54,7 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
                 })
             })
         } else {
-            print("images loaded successfully")
+            print("images loaded successfully", appendNewline: false)
             self.photoCollectionView.hidden = false
         }
         self.photoCollectionView.reloadData()
@@ -80,21 +80,21 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PhotoCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PhotoCollectionViewCell
         cell.imageManager = imageManager
         cell.imageAsset = images?.objectAtIndex(indexPath.item) as? PHAsset // configure cell
         return cell
     }
     
     // PHPhotoLibraryChangeObserver
-    func photoLibraryDidChange(changeInstance: PHChange!) {
+    func photoLibraryDidChange(changeInstance: PHChange) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.images = PHAsset.fetchAssetsWithMediaType(.Image, options: nil)
             if (self.images.count == 0){
-                println("no images loaded")
+                print("no images loaded")
                 self.photoCollectionView.hidden = true
             } else {
-                print("images loaded successfully")
+                print("images loaded successfully", appendNewline: false)
                 self.photoCollectionView.hidden = false
             }
             self.photoCollectionView.reloadData()
@@ -103,9 +103,9 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     // tap on photo to segue photo detail view
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("segue to image \(indexPath.item)")
+        print("segue to image \(indexPath.item)")
         selectedImage = indexPath.item
-        var cellSelection = collectionView.cellForItemAtIndexPath(indexPath)
+        let cellSelection = collectionView.cellForItemAtIndexPath(indexPath)
         cellSelectionFrame = cellSelection?.superview?.convertRect(cellSelection!.frame, toView: nil) //cellSelection?.frame
         
         performSegueWithIdentifier("collectionSegue", sender: self)
@@ -132,32 +132,32 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
         isPresenting = false
         return self
     }
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return animationLength
     }
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        println("animating transition")
-        var containerView = transitionContext.containerView()
-        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        var movingImage = UIImageView(frame: cellSelectionFrame)
+        print("animating transition")
+        let containerView = transitionContext.containerView()
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        let movingImage = UIImageView(frame: cellSelectionFrame)
         
-        var phAsset = images[selectedImage] as! PHAsset // make a copy of the image
+        let phAsset = images[selectedImage] as! PHAsset // make a copy of the image
         imageManager.requestImageForAsset(phAsset, targetSize: CGSize(width: 320, height: 320), contentMode: .AspectFill, options: nil) { image, info in
             movingImage.image = image
         }
 //        photoCollectionView.addSubview(movingImage)
         
-        var window = UIApplication.sharedApplication().keyWindow! // add image to master view
+        let window = UIApplication.sharedApplication().keyWindow! // add image to master view
         window.addSubview(movingImage)
     
         
         if (isPresenting) {
-            containerView.addSubview(toViewController.view)
+            containerView!.addSubview(toViewController.view)
             toViewController.view.alpha = 0
-            var editPhotoViewController = toViewController as! EditPhotoViewController
+            let editPhotoViewController = toViewController as! EditPhotoViewController
             var libraryEditViewController = fromViewController as! LibraryViewController
-            var finalImageView = editPhotoViewController.canvasImage
+            let finalImageView = editPhotoViewController.canvasImage
             
             editPhotoViewController.canvasImage.hidden = true
 
@@ -173,10 +173,10 @@ class LibraryViewController: UIViewController, UICollectionViewDelegate, UIColle
                     movingImage.removeFromSuperview()
             }
         } else {
-            var libraryViewController = toViewController as! LibraryViewController
-            var editPhotoViewController = fromViewController as! EditPhotoViewController
+            let libraryViewController = toViewController as! LibraryViewController
+            let editPhotoViewController = fromViewController as! EditPhotoViewController
             var finalImageView = libraryViewController.cellSelectionFrame
-            var startingImageViewFrame = editPhotoViewController.canvasImage.frame
+            let startingImageViewFrame = editPhotoViewController.canvasImage.frame
             
             movingImage.contentMode = .ScaleAspectFill
             

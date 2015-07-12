@@ -71,8 +71,8 @@ class EditPhotoViewController: UIViewController {
             self.canvasImage.image = result
             
             // Get image orientation & create CIImage
-            self.orientation = result.imageOrientation
-            self.beginImage = CIImage(image: self.canvasImage.image)
+            self.orientation = result!.imageOrientation
+            self.beginImage = CIImage(image: self.canvasImage.image!)
             //Set filter values
             self.filter = CIFilter(name: "CIExposureAdjust")
             self.filter.setValue(self.beginImage, forKey: kCIInputImageKey)
@@ -80,7 +80,7 @@ class EditPhotoViewController: UIViewController {
             // Create context
             self.context = CIContext(options:nil)
             // Create image copy with filter applied
-            let cgimg = self.context.createCGImage(self.filter.outputImage, fromRect: self.filter.outputImage.extent())
+            let cgimg = self.context.createCGImage(self.filter.outputImage, fromRect: self.filter.outputImage.extent)
             // Update image with filtered copy
             let newImage = UIImage(CGImage: cgimg, scale: 1, orientation: self.orientation)
             self.canvasImage.image = newImage
@@ -97,7 +97,7 @@ class EditPhotoViewController: UIViewController {
     }
     
     @IBAction func doneDidPress(sender: AnyObject) {
-        println("Saving images does not work in Simulator. Try testing the feature on a device.")
+        print("Saving images does not work in Simulator. Try testing the feature on a device.")
 //        let imageToSave = filter.outputImage
 //        let softwareContext = CIContext(options:[kCIContextUseSoftwareRenderer: true])
 //        let cgimg = softwareContext.createCGImage(imageToSave, fromRect:imageToSave.extent())
@@ -192,7 +192,7 @@ class EditPhotoViewController: UIViewController {
     }
     
     @IBAction func didChangeSlider(sender: UISlider) {
-        var sliderValueLabelNewY = sliderValueLabelInitialY - 5
+        let sliderValueLabelNewY = sliderValueLabelInitialY - 5
         sliderValueLabel.text = "\(Int(editSlider.value * 100 / 2))"
         sliderValueOverlay.text = "\(Int(editSlider.value * 100 / 2))"
         
@@ -204,7 +204,7 @@ class EditPhotoViewController: UIViewController {
         let sliderValue = sender.value
         filter.setValue(sliderValue, forKey: kCIInputEVKey)
         let outputImage = filter.outputImage
-        let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent())
+        let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent)
         let newImage = UIImage(CGImage: cgimg, scale: 1, orientation: self.orientation)
         self.canvasImage.image = newImage
         
@@ -216,7 +216,7 @@ class EditPhotoViewController: UIViewController {
                 self.sliderValueLabel.center.y = sliderValueLabelNewY
             })
         } else {
-            UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: nil, animations: { () -> Void in
+            UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: [], animations: { () -> Void in
                 self.sliderValueLabel.center.y = self.sliderValueLabelInitialY
             }, completion: nil)
             UIView.animateWithDuration(0.5, animations: { () -> Void in

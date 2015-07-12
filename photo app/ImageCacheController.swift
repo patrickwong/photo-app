@@ -39,8 +39,8 @@ class ImageCacheController: PHCachingImageManager {
             index, _ in
             if !updatedCache.containsIndex(index) {
                 let asset: AnyObject! = self.images[index]
-                self.imageCache.stopCachingImagesForAssets([asset], targetSize: self.targetSize, contentMode: self.contentMode, options: nil)
-                println("Stopping caching image \(index)")
+//                self.imageCache.stopCachingImagesForAssets([asset], targetSize: self.targetSize, contentMode: self.contentMode, options: nil)
+                print("Stopping caching image \(index)")
                 
             }
         }
@@ -50,8 +50,8 @@ class ImageCacheController: PHCachingImageManager {
             index, _ in
             if !self.cachedIndices.containsIndex(index) {
                 let asset: AnyObject! = self.images[index]
-                self.imageCache.startCachingImagesForAssets([asset], targetSize: self.targetSize, contentMode: self.contentMode, options: nil)
-                println("Starting caching image \(index)")
+//                self.imageCache.startCachingImagesForAssets([asset], targetSize: self.targetSize, contentMode: self.contentMode, options: nil)
+                print("Starting caching image \(index)")
             }
         }
         cachedIndices = NSIndexSet(indexSet: updatedCache)

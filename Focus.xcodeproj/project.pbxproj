@@ -169,7 +169,8 @@
 		CAA8763F1AB4D26200FF4904 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Patrick Wong";
 				TargetAttributes = {
 					CAA876461AB4D26200FF4904 = {
@@ -292,6 +293,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -357,6 +359,7 @@
 				INFOPLIST_FILE = "photo app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Wong.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Focus;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -370,6 +373,7 @@
 				INFOPLIST_FILE = "photo app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Wong.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Focus;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -389,6 +393,7 @@
 				);
 				INFOPLIST_FILE = "photo appTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Wong.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = FocusTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus.app/Focus";
 			};
@@ -404,6 +409,7 @@
 				);
 				INFOPLIST_FILE = "photo appTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Patrick-Wong.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = FocusTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Focus.app/Focus";
 			};
